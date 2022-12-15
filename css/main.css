@@ -48,22 +48,32 @@ textarea:focus {
   box-shadow: 0 0 0 3px var(--color-input-focus-shadow);
 }
 
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: transparent;
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
 }
 
 .heading {
+  text-align: center;
   color: var(--color1);
   text-shadow: 1px 1px 2px var(--color-box-shadow);
 }
 
 .btn {
+  height: 35px;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 8px 16px;
   border-radius: 5px;
+  font-size: 14px;
   font-weight: bold;
+  cursor: pointer;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -98,8 +108,29 @@ input[type="number"]::-webkit-outer-spin-button {
   display: flex;
 }
 
-.btn-group button:nth-child(1) {
+.btn-group div:nth-child(1) {
   margin-right: 10px;
+}
+
+.nav-login {
+  top: 0;
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 5px 10px var(--color-box-shadow);
+  background-color: var(--color1);
+}
+
+.nav-login .logo {
+  padding: 0px 0px 0px 20px;
+}
+
+.nav-login .logo img {
+  height: 44px;
 }
 
 .content {
@@ -107,6 +138,10 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 100vh;
   padding: 20px;
   background-color: var(--color3);
+}
+
+.content-login {
+  padding: 0px !important;
 }
 
 .title-bar {
@@ -125,6 +160,37 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 10px;
   background-color: var(--color4);
   box-shadow: 1px 1px 5px var(--color-box-shadow);
+}
+
+.container-login {
+  top: 50%;
+  left: 50%;
+  width: 400px !important;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+}
+
+.container-login label {
+  font-weight: bold;
+}
+
+.container-login input {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 32px;
+  font-size: 16px;
+  margin: 5px 0px 25px 0px;
+  border-bottom: 1px solid var(--color-input-border);
+}
+
+.container-login button {
+  width: 100%;
+  height: 48px;
+  margin: 20px 0px;
+  font-size: 18px;
+  letter-spacing: 2px;
 }
 
 .form td:nth-child(1) {

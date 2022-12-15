@@ -1,185 +1,147 @@
-<?php session_start();
+<?php
+session_start();
 require_once('../includes/dbh.inc.php');
 require_once('../includes/functions.inc.php');
 ?>
 
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 
 <head>
     <title>E-FINE</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/main.css">
-    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'>
 </head>
 
 <body>
-    <div class="sidebar">
-        <div class="logo-details">
-            <a href="dashboard.php"><i class='bx bx-taxi'></a></i>
-            <span class="logo_name">E-Fine</span>
-        </div>
 
-        <ul class="nav-links">
-            <div class="current">
-                <li>
-                    <a href="dashboard.php">
-                        <i class='bx bx-grid-alt'></i>
-                        <span class="link_name">Overview</span>
-                    </a>
-                    <ul class="sub-menu blank">
-                        <li><a class="link_name" href="dashboard.php">overview</a></li>
-                    </ul>
-                </li>
-            </div>
-
-            <li>
-                <a href="pendingFines.php">
-                    <i class='bx bx-error-circle'></i>
-                    <span class="link_name">Pending Fines</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="pendingFines.php">Pending Fines</a></li>
-                </ul>
-            </li>
-
-
-            <li>
-                <a href="ViolationHistory.php">
-                    <i class='bx bx-history'></i>
-                    <span class="link_name">Violation History</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="ViolationHistory.php">Violation History</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <div class="iocn-link">
-                    <a href="Profile.php">
-                        <i class='bx bx-user'></i>
-                        <span class="link_name">Profile</span>
-                    </a>
-                    <i class='bx bxs-chevron-down arrow'></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="Profile.php">Profile</a></li>
-                    <li><a href="#">Change Details </a></li>
-
-                </ul>
-            </li>
-
-            <li>
-                <a href="ReportProblem.php">
-                    <i class='bx bx-error'></i>
-                    <span class="link_name">Report a Problem</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="ReportProblem.php">Report a Problem</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <div class="profile-details">
-                    <div class="profile-content">
-                        <img src="image/profile.jpg" alt="">
-                    </div>
-                    <div class="name-job">
-                        <div class="profile_name">Navindu </div>
-                        <div class="job">20030400254</div>
-                    </div>
-                    <a href="./include/logout.php"><i class='bx bx-log-out'></i></a>
-                </div>
-            </li>
-        </ul>
-
-    </div>
+    <?php include("sidebar.php"); ?>
 
     <section class="home-section">
-        <div class="home-content">
-            <i class='bx bx-menu'></i>
-            <div class="right-side-items">
-                <i class='bx bx-bell'></i>
-                <div class="profile">
-                    <img src="image/1.jpg" alt="">
+
+        <?php include("navbar.php"); ?>
+
+        <div class="content">
+            <div class="title-bar">
+                <div class="heading">
+                    <h1>Add New Police Officer</h1>
                 </div>
             </div>
-        </div>
-        <div>
-            <div class="content">
-                <div class="title-bar">
-                    <div class="heading">
-                        <h1>Add New Police Officer</h1>
-                    </div>
-                </div>
-                <div class="container">
-                    <form method="post" action="includes/system-admin/law-add.inc.php">
-                        <table class="form po">
-                            <tr>
-                                <td><label>Police Officer Id</label></td>
-                                <td>
+            <div class="container">
+                <form method="post" action="../includes/system-admin/po-add.inc.php">
+                    <table class="form po">
+                        <tr>
+                            <td><label>Police Officer Id</label></td>
+                            <td>
+                                <?php
+                                $table = "police_officer";
+                                $result = nextId($conn, $table);
+                                if ($result) {
+                                    while ($row = mysqli_fetch_assoc($result)) { ?>
+                                        <input type="text" name="id" id="id" class="disabled" disabled value=<?php echo $row['id'] + 1 ?>>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Name</label></td>
+                            <td><input type="text" name="name" id="name"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Service No</label></td>
+                            <td><input type="number" name="sNo" id="sNo" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Rank</label></td>
+                            <td>
+                                <select name="rank" id="rank">
+                                    <option value="IGP">IGP</option>
+                                    <option value="SDIG">SDIG</option>
+                                    <option value="DIG">DIG</option>
+                                    <option value="SSP">SSP</option>
+                                    <option value="SP">SP</option>
+                                    <option value="ASP">ASP</option>
+                                    <option value="CIP">CIP</option>
+                                    <option value="IP">IP</option>
+                                    <option value="SI">SI</option>
+                                    <option value="PS 1">PS 1</option>
+                                    <option value="PS 2">PS 2</option>
+                                    <option value="PC 1">PC 1</option>
+                                    <option value="PC 2">PC 2</option>
+                                    <option value="PC 3">PC 3</option>
+                                    <option value="PC 4">PC 4</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Police Station</label></td>
+                            <td>
+                                <select name="pStation" id="pStation">
+                                    <option value="Colombo">Colombo</option>
+                                    <option value="Gampaha">Gampaha</option>
+                                    <option value="Kalutara">Kalutara</option>
+                                    <option value="Kandy">Kandy</option>
+                                    <option value="Matale">Matale</option>
+                                    <option value="Nuwara Eliya">Nuwara Eliya</option>
+                                    <option value="Galle">Galle</option>
+                                    <option value="Matara">Matara</option>
+                                    <option value="Hambantota">Hambantota</option>
+                                    <option value=" Jaffna"> Jaffna</option>
+                                    <option value="Kilinochchi">Kilinochchi</option>
+                                    <option value="Mannar">Mannar</option>
+                                    <option value="Vavuniya">Vavuniya</option>
+                                    <option value="Mullaitivu">Mullaitivu</option>
+                                    <option value="Batticaloa">Batticaloa</option>
+                                    <option value="Ampara">Ampara</option>
+                                    <option value="Trincomalee">Trincomalee</option>
+                                    <option value="Kurunegala">Kurunegala</option>
+                                    <option value="Puttalam">Puttalam</option>
+                                    <option value="Anuradhapura">Anuradhapura</option>
+                                    <option value="Polonnaruwa">Polonnaruwa</option>
+                                    <option value="Badulla">Badulla</option>
+                                    <option value="Moneragala">Moneragala</option>
+                                    <option value="Ratnapura">Ratnapura</option>
+                                    <option value="Kegalle">Kegalle</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Email Address</label></td>
+                            <td><input type="text" name="email" id="email"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="btn-group">
+                                    <a href="po-view.php">
+                                        <div class="btn btn-secondary">Cancel</div>
+                                    </a>
+                                    <button class="btn btn-primary" type="submit" name="submit">Save</button>
                                     <?php
-                                    $table = "police_officer";
-                                    $result = nextId($conn, $table);
-                                    if ($result) {
-                                        while ($row = mysqli_fetch_assoc($result)) { ?>
-                                            <input type="text" name="id" id="id" class="disabled" disabled value=<?php echo $row['id'] + 1 ?>>
-                                    <?php
+                                    if (isset($_GET["error"])) {
+                                        if ($_GET["error"] == "emptyInput") {
+                                            echo "<p>Fill in all the fields!</p>";
+                                        } else if ($_GET["error"] == "invalidName") {
+                                            echo "<p>Invalid Name! Use only alphabet letters.</p>";
+                                        } else if ($_GET["error"] == "invalidEmail") {
+                                            echo "<p>Invalid Email!</p>";
+                                        } else if ($_GET["error"] == "emailTaken") {
+                                            echo "<p>Email is already taken!</p>";
+                                        } else if ($_GET["error"] == "stmtFailed") {
+                                            echo "<p>Something went wrong!</p>";
+                                        } else if ($_GET["error"] == "none") {
+                                            echo "<p>Done!</p>";
                                         }
                                     }
                                     ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>Name</label></td>
-                                <td><input type="text" name="name" id="name"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Service No</label></td>
-                                <td><input type="number" name="sNo" id="sNo"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Rank</label></td>
-                                <td>
-                                    <select name="rank" id="rank">
-                                        <option value="">Select Menu</option>
-                                        <option value="">Select Menu</option>
-                                        <option value="">Select Menu</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>Police Station</label></td>
-                                <td>
-                                    <select name="pStation" id="pStation">
-                                        <option value="">Select Menu</option>
-                                        <option value="">Select Menu</option>
-                                        <option value="">Select Menu</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label>Email Address</label></td>
-                                <td><input type="email" name="email" id="email"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <div class="btn-group">
-                                        <button class="btn btn-secondary">Cancel</button>
-                                        <button class="btn btn-primary" type="submit" name="submit">Save</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </div>
         </div>
-    </section>
 
-    <script src="../js/script.js"></script>
+    </section>
 
 </body>
 
