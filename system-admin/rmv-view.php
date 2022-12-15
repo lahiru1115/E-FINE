@@ -22,10 +22,10 @@ require_once('../includes/functions.inc.php');
         <div class="content">
             <div class="title-bar">
                 <div class="heading">
-                    <h1>Police Station Admins</h1>
+                    <h1>RMV Admins</h1>
                 </div>
                 <div class="btn-group">
-                    <a href="psa-add.php"><button class="btn btn-primary">Add New</button></a>
+                    <a href="rmv-add.php"><button class="btn btn-primary">Add New</button></a>
                 </div>
             </div>
             <div class="container">
@@ -34,8 +34,6 @@ require_once('../includes/functions.inc.php');
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Province</th>
-                                <th>District</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Edit</th>
@@ -49,8 +47,6 @@ require_once('../includes/functions.inc.php');
                                 while ($row = mysqli_fetch_assoc($result)) { ?>
                                     <tr>
                                         <td><?php echo $row['id']; ?></td>
-                                        <td><?php echo $row['province']; ?></td>
-                                        <td><?php echo $row['district']; ?></td>
                                         <td><?php echo $row['name']; ?></td>
                                         <td><?php echo $row['email']; ?></td>
                                         <td></td>

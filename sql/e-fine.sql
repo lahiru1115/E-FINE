@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 15, 2022 at 06:26 AM
+-- Generation Time: Dec 15, 2022 at 07:25 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -42,7 +42,8 @@ CREATE TABLE IF NOT EXISTS `admin_login` (
 --
 
 INSERT INTO `admin_login` (`id`, `email`, `password`, `role`, `timestamp`) VALUES
-(1056, 'ravindupbalasooriya@gmail.com', '$2y$10$Ij87sN20LHDQJswao5iZCO/oSKNkDn3OEpUuh8quU1i4C8f4vA1sW', 'System Admin', '2022-12-15 03:42:46');
+(1056, 'ravindupbalasooriya@gmail.com', '$2y$10$Ij87sN20LHDQJswao5iZCO/oSKNkDn3OEpUuh8quU1i4C8f4vA1sW', 'System Admin', '2022-12-15 03:42:46'),
+(1002, '15@gmail.com', '$2y$10$SEaIUqaPuWTB6yIZjVa0f.6efYXnVN.pnRFIMYlIwlwqiq45F1BiW', 'RMV Admin', '2022-12-15 07:23:58');
 
 -- --------------------------------------------------------
 
@@ -116,14 +117,36 @@ CREATE TABLE IF NOT EXISTS `police_station_admin` (
   `email` varchar(255) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1002 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1004 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `police_station_admin`
 --
 
 INSERT INTO `police_station_admin` (`id`, `province`, `district`, `name`, `email`, `timestamp`) VALUES
-(1001, '56456', '56546', '456456', '45645', '2022-12-15 06:25:20');
+(1001, 'Western Province', 'Colombo', 'ucsc', 'ravisooriya@gmail.com', '2022-12-15 06:36:36');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rmv_admin`
+--
+
+DROP TABLE IF EXISTS `rmv_admin`;
+CREATE TABLE IF NOT EXISTS `rmv_admin` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1003 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rmv_admin`
+--
+
+INSERT INTO `rmv_admin` (`id`, `name`, `email`, `timestamp`) VALUES
+(1000, '456456', '45645', '2022-12-15 06:25:20');
 
 -- --------------------------------------------------------
 

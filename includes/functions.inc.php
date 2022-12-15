@@ -55,6 +55,14 @@ function adminLogin($conn, $email, $pwd, $table)
         if ($_SESSION["role"] == "Police Officer") {
             header("location: ../system-admin/po-home.php");
             exit();
+        }
+        if ($_SESSION["role"] == "Police Station Admin") {
+            header("location: ../system-admin/psa-home.php");
+            exit();
+        }
+        if ($_SESSION["role"] == "RMV Admin") {
+            header("location: ../system-admin/rmv-home.php");
+            exit();
         } else {
             header("location: ../index.php?error=invalidLogin");
             exit();
@@ -262,14 +270,70 @@ function psaAddEmptyInput($name, $email)
 // Add police station admin profile details
 function psaAdd($conn, $province, $district, $name, $email)
 {
-    $sql = "INSERT INTO police_station_admin (name, email, timestamp) VALUES (?, ?, now());";
+    $sql = "INSERT INTO police_station_admin (province, district, name, email, timestamp) VALUES (?, ?, ?, ?, now());";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../../system-admin/psa-add.php?error=stmtFailed");
         exit();
     }
 
+    mysqli_stmt_bind_param($stmt, "ssss", $province, $district, $name, $email);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+// View police station admins
+function psaView($conn)
+{
+    $sql = "SELECT * FROM police_station_admin;";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        return $result;
+        exit();
+    } else {
+        // echo "<p>There are no data available!</p>";
+        exit();
+    }
+}
+
+// RMV admin add empty input check
+function rmvAddEmptyInput($name, $email)
+{
+    if (empty($name) || empty($email)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+// Add RMV admin profile details
+function rmvAdd($conn, $name, $email)
+{
+    $sql = "INSERT INTO rmv_admin (name, email, timestamp) VALUES (?, ?, now());";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../system-admin/po-add.php?error=stmtFailed");
+        exit();
+    }
+
     mysqli_stmt_bind_param($stmt, "ss", $name, $email);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
+}
+
+// View police station admins
+function rmvView($conn)
+{
+    $sql = "SELECT * FROM rmv_admin;";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        return $result;
+        exit();
+    } else {
+        // echo "<p>There are no data available!</p>";
+        exit();
+    }
 }
