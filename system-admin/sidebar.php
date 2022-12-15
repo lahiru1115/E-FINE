@@ -82,14 +82,14 @@
 
             <li>
                 <div class="profile-details">
-                    <div class="profile-content">
+                    <!-- <div class="profile-content">
                         <img src="image/profile.jpg" alt="profileImg">
-                    </div>
+                    </div> -->
                     <div class="name-job">
-                        <div class="profile_name">Navindu</div>
-                        <div class="job">20030400254</div>
+                        <div class="profile_name">Lahiru</div>
+                        <div class="job">lahirudissanayake15@gmail.com</div>
                     </div>
-                    <a href="./include/logout.php"><i class='bx bx-log-out'></i></a>
+                    <a href="../include/logout.php"><i class='bx bx-log-out'></i></a>
                 </div>
             </li>
         </ul>

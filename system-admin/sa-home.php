@@ -30,7 +30,7 @@ require_once('../includes/functions.inc.php');
                     <i class='bx bx-user'></i>
                 </span>
                 <div>
-                    <h3>Remaining Points</h3>
+                    <h3>Total Traffic Laws</h3>
                     <span>15</span>
                 </div>
             </div>
@@ -39,8 +39,8 @@ require_once('../includes/functions.inc.php');
                     <i class='bx bx-id-card'></i>
                 </span>
                 <div>
-                    <h3>account Status</h3>
-                    <span>active</span>
+                    <h3>Total Police Officers</h3>
+                    <span>56</span>
                 </div>
             </div>
 
@@ -49,35 +49,10 @@ require_once('../includes/functions.inc.php');
                     <i class='bx bxs-error'></i>
                 </span>
                 <div>
-                    <h3>Total Violation</h3>
+                    <h3>Total Police Stations</h3>
                     <span>10</span>
                 </div>
             </div>
-        </div>
-
-        <h3 class="i-name">
-            Pay Now
-        </h3>
-
-        <div class="board">
-            <table class="overview-table" width="100%">
-                <thead>
-                    <td>Violation ID</td>
-                    <td>Amount</td>
-                    <td>Type</td>
-                </thead>
-                <tbody>
-                    <tr class="overview-tr">
-                        <td>
-                            <?php
-                            echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-                            ?>
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
 
     </section>

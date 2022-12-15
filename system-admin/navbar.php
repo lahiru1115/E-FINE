@@ -11,9 +11,9 @@
         <!-- <i class='bx bx-menu'></i> -->
         <div class="right-side-items">
             <i class='bx bx-bell'></i>
-            <div class="profile">
+            <!-- <div class="profile">
                 <img src="image/1.jpg">
-            </div>
+            </div> -->
         </div>
     </div>
 
