@@ -193,6 +193,10 @@ input[type="number"]::-webkit-outer-spin-button {
   letter-spacing: 2px;
 }
 
+.container-reg {
+  width: max-content !important;
+}
+
 .form td:nth-child(1) {
   width: 20%;
 }

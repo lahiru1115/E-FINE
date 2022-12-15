@@ -13,6 +13,9 @@
             <a href="index.php">
                 <img src="assets/logo.png">
             </a>
+            <a href="system-admin/register.php" style="opacity: 0%;">
+                <img src="assets/logo.png">
+            </a>
         </div>
     </nav>
 
@@ -26,15 +29,7 @@
                 <input type="password" placeholder="Enter your password" name="pwd" id="pwd">
                 <button class="btn btn-primary" type="submit" name="submit">LOGIN</button>
             </form>
-            <?php
-            if (isset($_GET["error"])) {
-                if ($_GET["error"] == "emptyInput") {
-                    echo "<p>Fill in all the fields!</p>";
-                } else if ($_GET["error"] == "invalidLogin") {
-                    echo "<p>Invalid Email or Password!</p>";
-                }
-            }
-            ?>
+            <?php include("system-admin/errors.php"); ?>
         </div>
     </div>
 

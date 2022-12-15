@@ -59,19 +59,7 @@ require_once('../includes/functions.inc.php');
                         </tbody>
                     </table>
                 </div>
-                <?php
-                if (isset($_GET["error"])) {
-                    if ($_GET["error"] == "cantDelete") {
-                        echo "<p>Can't delete at the moment!</p>";
-                    } else if ($_GET["error"] == "noData") {
-                        echo "<p>There are no data available!</p>";
-                    } else if ($_GET["error"] == "updated") {
-                        echo "<p>Updated!</p>";
-                    } else if ($_GET["error"] == "deleted") {
-                        echo "<p>Deleted!</p>";
-                    }
-                }
-                ?>
+                <?php include("errors.php"); ?>
             </div>
         </div>
 

@@ -91,17 +91,7 @@ require_once('../includes/functions.inc.php');
                                         <div class="btn btn-secondary">Cancel</div>
                                     </a>
                                     <button class="btn btn-primary" type="submit" name="submit">Save</button>
-                                    <?php
-                                    if (isset($_GET["error"])) {
-                                        if ($_GET["error"] == "emptyInput") {
-                                            echo "<p>Fill in all the fields!</p>";
-                                        } else if ($_GET["error"] == "stmtFailed") {
-                                            echo "<p>Something went wrong!</p>";
-                                        } else if ($_GET["error"] == "none") {
-                                            echo "<p>Done!</p>";
-                                        }
-                                    }
-                                    ?>
+                                    <?php include("errors.php"); ?>
                                 </div>
                             </td>
                         </tr>
