@@ -7,18 +7,19 @@ require_once('../includes/functions.inc.php');
 
 <head>
     <title>E-FINE</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet/less" type="text/css" href="../css/main.less" />
+    <script src="../js/less.js" type="text/javascript"></script>
 </head>
 
 <body>
 
-    <div class="content">
+    <div class="content content-bg">
         <div class="title-bar">
             <div class="heading">
                 <h1>System Admin | Register</h1>
             </div>
         </div>
-        <div class="container container-reg">
+        <div class="container">
             <form method="post" action="../includes/system-admin/sa-register.inc.php">
                 <table class="form rmv">
                     <tr>

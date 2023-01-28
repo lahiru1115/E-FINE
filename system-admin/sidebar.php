@@ -1,6 +1,8 @@
 <html>
 
 <head>
+    <link rel="stylesheet/less" type="text/css" href="../css/main.less" />
+    <script src="../js/less.js" type="text/javascript"></script>
     <link rel="stylesheet" href="../css/style.css">
     <link rel='stylesheet' href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'>
 </head>
@@ -8,10 +10,11 @@
 <body>
 
     <div class="sidebar">
-        <div class="logo-details">
+        <div class="logo">
             <i class='bx bx-menu'></i>
-            <!-- <a href="sa-home.php"><i class='bx bx-taxi'></i></a> -->
-            <span class="logo_name">E-Fine</span>
+            <a href="sa-home.php">
+                <img src="../assets/logo.png">
+            </a>
         </div>
 
         <ul class="nav-links">
@@ -95,7 +98,7 @@
         </ul>
     </div>
 
-    <script src="../js/script.js"></script>
+    <script src="../js/sidebar.js"></script>
 
 </body>
 

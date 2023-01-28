@@ -8,7 +8,8 @@ require_once('../includes/functions.inc.php');
 
 <head>
     <title>E-FINE</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet/less" type="text/css" href="../css/main.less" />
+    <script src="../js/less.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -39,8 +40,10 @@ require_once('../includes/functions.inc.php');
                                 <th>Rank</th>
                                 <th>Police Station</th>
                                 <th>Email</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>Timestamp</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,8 +58,10 @@ require_once('../includes/functions.inc.php');
                                         <td><?php echo $row['rank']; ?></td>
                                         <td><?php echo $row['pStation']; ?></td>
                                         <td><?php echo $row['email']; ?></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td><?php echo $row['timestamp']; ?></td>
+                                        <td><i class='bx bx-detail'></i></td>
+                                        <td><i class='bx bxs-edit'></i></td>
+                                        <td><i class='bx bx-trash'></i></td>
                                     </tr>
                             <?php
                                 }

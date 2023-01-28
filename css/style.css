@@ -1,34 +1,16 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  overflow: hidden;
-}
-
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
   height: 100%;
   width: 260px;
+  position: fixed;
   background: #11101d;
-  z-index: 100;
   transition: all 0.5s ease;
 }
 
-.sidebar.close {
-  width: 78px;
+.sidebar .logo img {
+  height: 44px;
 }
 
-.sidebar .logo-details {
-  height: 60px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.sidebar .logo-details i {
+.sidebar .logo i {
   font-size: 30px;
   color: #fff;
   height: 50px;
@@ -37,7 +19,7 @@ body {
   line-height: 50px;
 }
 
-.sidebar .logo-details .logo_name {
+.sidebar .logo .logo_name {
   font-size: 22px;
   color: #fff;
   font-weight: 600;
@@ -45,7 +27,7 @@ body {
   transition-delay: 0.1s;
 }
 
-.sidebar.close .logo-details .logo_name {
+.sidebar .logo .logo_name {
   transition-delay: 0s;
   opacity: 0;
   pointer-events: none;

@@ -8,7 +8,8 @@ require_once('../includes/functions.inc.php');
 
 <head>
     <title>E-FINE</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet/less" type="text/css" href="../css/main.less" />
+    <script src="../js/less.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -27,7 +28,7 @@ require_once('../includes/functions.inc.php');
             </div>
             <div class="container">
                 <form method="post" action="../includes/system-admin/law-add.inc.php">
-                    <table class="form law">
+                    <table class="form form-law">
                         <tr>
                             <td><label>Violation Id</label></td>
                             <td>
