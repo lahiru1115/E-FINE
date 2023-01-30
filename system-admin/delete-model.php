@@ -7,9 +7,7 @@
 </head>
 
 <body>
-
-
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal modal-centered">
         <div class="modal-content border-0">
             <div class="modal-body p-0">
                 <div class="card border-0 p-sm-3 p-2 justify-content-center">
