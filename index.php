@@ -3,7 +3,7 @@
 <head>
     <title>E-FINE</title>
     <link rel="stylesheet/less" type="text/css" href="css/main.less" />
-    <script src="js/less.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/less.js"></script>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
             <a href="index.php">
                 <img src="assets/logo.png">
             </a>
-            <a href="system-admin/register.php" style="opacity: 0%;">
+            <a href="public/system-admin/main/register.php" style="opacity: 0%;">
                 <img src="assets/logo.png">
             </a>
         </div>
@@ -22,14 +22,14 @@
     <div class="content content-login">
         <div class="container container-login">
             <h1 class="heading">Admin Login</h1><br>
-            <form method="post" action="includes/admin-login.inc.php">
+            <form method="post" action="includes/main/admin-login.inc.php">
                 <label>Email</label>
                 <input type="text" placeholder="Enter your email" name="email" id="email">
                 <label>Password</label>
                 <input type="password" placeholder="Enter your password" name="pwd" id="pwd">
                 <button class="btn btn-primary" type="submit" name="submit">LOGIN</button>
             </form>
-            <?php include("system-admin/errors.php"); ?>
+            <?php include("public/main/errors.php"); ?>
         </div>
     </div>
 

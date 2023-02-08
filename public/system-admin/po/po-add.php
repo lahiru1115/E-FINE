@@ -8,8 +8,8 @@ require_once('../includes/functions.inc.php');
 
 <head>
     <title>E-FINE</title>
-    <link rel="stylesheet/less" type="text/css" href="../css/main.less" />
-    <script src="../js/less.js" type="text/javascript"></script>
+    <link rel="stylesheet/less" type="text/css" href="../../../css/main.less" />
+    <script type="text/javascript" src="../../../js/less.js"></script>
 </head>
 
 <body>
@@ -23,17 +23,17 @@ require_once('../includes/functions.inc.php');
         <div class="content">
             <div class="title-bar">
                 <div class="heading">
-                    <h1>Add New Police Station Admin</h1>
+                    <h1>Add New Police Officer</h1>
                 </div>
             </div>
             <div class="container">
-                <form method="post" action="../includes/system-admin/psa-add.inc.php">
-                    <table class="form psa">
+                <form method="post" action="../includes/system-admin/po-add.inc.php">
+                    <table class="form po">
                         <tr>
-                            <td><label>Police Station Id</label></td>
+                            <td><label>Police Officer Id</label></td>
                             <td>
                                 <?php
-                                $table = "police_station_admin";
+                                $table = "police_officer";
                                 $result = nextId($conn, $table);
                                 if ($result) {
                                     while ($row = mysqli_fetch_assoc($result)) { ?>
@@ -45,25 +45,39 @@ require_once('../includes/functions.inc.php');
                             </td>
                         </tr>
                         <tr>
-                            <td><label>Province</label></td>
+                            <td><label>Name</label></td>
+                            <td><input type="text" name="name" id="name"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Service No</label></td>
+                            <td><input type="number" name="sNo" id="sNo" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Rank</label></td>
                             <td>
-                                <select name="province" id="province">
-                                    <option value="Western Province">Western Province</option>
-                                    <option value="Central Province">Central Province</option>
-                                    <option value="North Central Province">North Central Province</option>
-                                    <option value="Northern Province">Northern Province</option>
-                                    <option value="Eastern Province">Eastern Province</option>
-                                    <option value="North Western Province">North Western Province</option>
-                                    <option value="Southern Province">Southern Province</option>
-                                    <option value="Uva Province">Uva Province</option>
-                                    <option value="Sabaragamuwa Province">Sabaragamuwa Province</option>
+                                <select name="rank" id="rank">
+                                    <option value="IGP">IGP</option>
+                                    <option value="SDIG">SDIG</option>
+                                    <option value="DIG">DIG</option>
+                                    <option value="SSP">SSP</option>
+                                    <option value="SP">SP</option>
+                                    <option value="ASP">ASP</option>
+                                    <option value="CIP">CIP</option>
+                                    <option value="IP">IP</option>
+                                    <option value="SI">SI</option>
+                                    <option value="PS 1">PS 1</option>
+                                    <option value="PS 2">PS 2</option>
+                                    <option value="PC 1">PC 1</option>
+                                    <option value="PC 2">PC 2</option>
+                                    <option value="PC 3">PC 3</option>
+                                    <option value="PC 4">PC 4</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <td><label>District</label></td>
+                            <td><label>Police Station</label></td>
                             <td>
-                                <select name="district" id="district">
+                                <select name="pStation" id="pStation">
                                     <option value="Colombo">Colombo</option>
                                     <option value="Gampaha">Gampaha</option>
                                     <option value="Kalutara">Kalutara</option>
@@ -93,17 +107,13 @@ require_once('../includes/functions.inc.php');
                             </td>
                         </tr>
                         <tr>
-                            <td><label>Police Station Name</label></td>
-                            <td><input type="text" name="name" id="name"></td>
-                        </tr>
-                        <tr>
                             <td><label>Email Address</label></td>
                             <td><input type="text" name="email" id="email"></td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <div class="btn-group">
-                                    <a href="psa-view.php">
+                                    <a href="po-view.php">
                                         <div class="btn btn-secondary">Cancel</div>
                                     </a>
                                     <button class="btn btn-primary" type="submit" name="submit">Save</button>

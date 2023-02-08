@@ -1,14 +1,14 @@
 <?php
-require_once('../includes/dbh.inc.php');
-require_once('../includes/functions.inc.php');
+require_once('../../../db/dbh.php');
+require_once('../../../db/main.func.php');
 ?>
 
 <html>
 
 <head>
     <title>E-FINE</title>
-    <link rel="stylesheet/less" type="text/css" href="../css/main.less" />
-    <script src="../js/less.js" type="text/javascript"></script>
+    <link rel="stylesheet/less" type="text/css" href="../../../css/main.less" />
+    <script type="text/javascript" src="../../../js/less.js"></script>
 </head>
 
 <body>
@@ -20,7 +20,7 @@ require_once('../includes/functions.inc.php');
             </div>
         </div>
         <div class="container">
-            <form method="post" action="../includes/system-admin/sa-register.inc.php">
+            <form method="post" action="../../../includes/system-admin/sa-register.inc.php">
                 <table class="form rmv">
                     <tr>
                         <td><label>System Admin Id</label></td>
@@ -52,11 +52,11 @@ require_once('../includes/functions.inc.php');
                     <tr>
                         <td colspan="2">
                             <div class="btn-group">
-                                <a href="../index.php">
+                                <a href="../../../index.php">
                                     <div class="btn btn-secondary">Cancel</div>
                                 </a>
                                 <button class="btn btn-primary" type="submit" name="submit">Save</button>
-                                <?php include("errors.php"); ?>
+                                <?php include("../../main/errors.php"); ?>
                             </div>
                         </td>
                     </tr>

@@ -1,10 +1,10 @@
 <html>
 
 <head>
-    <link rel="stylesheet/less" type="text/css" href="../css/main.less" />
-    <script src="../js/less.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet/less" type="text/css" href="../../css/main.less" />
+    <link rel="stylesheet/less" type="text/css" href="../../css/style.less" />
     <link rel='stylesheet' href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'>
+    <script type="text/javascript" src="../../js/less.js"></script>
 </head>
 
 <body>
@@ -12,20 +12,20 @@
     <div class="sidebar">
         <div class="logo">
             <i class='bx bx-menu'></i>
-            <a href="sa-home.php">
-                <img src="../assets/logo.png">
+            <a href="../system-admin/main/sa-home.php">
+                <img src="../../assets/logo.png">
             </a>
         </div>
 
         <ul class="nav-links">
             <div class="current">
                 <li>
-                    <a href="sa-home.php">
+                    <a href="../system-admin/main/sa-home.php">
                         <i class='bx bx-grid-alt'></i>
                         <span class="link_name">Overview</span>
                     </a>
                     <ul class="sub-menu blank">
-                        <li><a class="link_name" href="sa-home.php">Overview</a></li>
+                        <li><a class="link_name" href="../system-admin/main/sa-home.php">Overview</a></li>
                     </ul>
                 </li>
             </div>

@@ -8,8 +8,8 @@ require_once('../includes/functions.inc.php');
 
 <head>
     <title>E-FINE</title>
-    <link rel="stylesheet/less" type="text/css" href="../css/main.less" />
-    <script src="../js/less.js" type="text/javascript"></script>
+    <link rel="stylesheet/less" type="text/css" href="../../../css/main.less" />
+    <script type="text/javascript" src="../../../js/less.js"></script>
 </head>
 
 <body>

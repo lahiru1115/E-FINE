@@ -1,25 +1,24 @@
 <?php
 session_start();
-require_once('../includes/dbh.inc.php');
-require_once('../includes/functions.inc.php');
+require_once('../../../db/dbh.php');
 ?>
 
 <html>
 
 <head>
     <title>E-FINE</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet/less" type="text/css" href="../css/main.less" />
-    <script src="../js/less.js" type="text/javascript"></script>
+    <link rel="stylesheet/less" type="text/css" href="../../../css/main.less" />
+    <link rel="stylesheet/less" type="text/css" href="../../../css/style.less" />
+    <script type="text/javascript" src="../../../js/less.js"></script>
 </head>
 
 <body>
 
-    <?php include("sidebar.php"); ?>
+    <?php include("../../main/sidebar.php"); ?>
 
     <section class="home-section">
 
-        <?php include("navbar.php"); ?>
+        <?php include("../../main/navbar.php"); ?>
 
         <h3 class="i-name">
             System Admin
@@ -54,6 +53,22 @@ require_once('../includes/functions.inc.php');
                     <span>10</span>
                 </div>
             </div>
+        </div>
+
+        <div class="board">
+            <table class="overview-table" width="100%">
+                <tbody>
+                    <tr class="overview-tr">
+                        <td>
+                            <?php
+                            echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+                            ?>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
     </section>

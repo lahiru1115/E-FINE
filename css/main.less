@@ -246,54 +246,56 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 0px 4px 4px 0px;
 }
 
-// #################################
+.form {
+  #name {
+    width: 300px;
+  }
 
-.form #name {
-  width: 300px;
-}
+  #email {
+    width: 400px;
+  }
 
-.form #email {
-  width: 400px;
-}
+  .form-law {
+    #act {
+      width: 100%;
+    }
 
-.form-law #act {
-  width: 100%;
-}
+    #part {
+      width: 100px;
+    }
 
-.form-law #part {
-  width: 100px;
-}
+    #chapter {
+      width: 100px;
+    }
 
-.form-law #chapter {
-  width: 100px;
-}
+    #section {
+      width: 100px;
+    }
 
-.form-law #section {
-  width: 100px;
-}
+    #title {
+      width: 100%;
+    }
 
-.form-law #title {
-  width: 100%;
-}
+    #law {
+      width: 100%;
+    }
 
-.form-law #law {
-  width: 100%;
-}
+    #fine {
+      width: 150px;
+    }
 
-.form-law #fine {
-  width: 150px;
-}
+    #points {
+      width: 100px;
+    }
+  }
 
-.form-law #points {
-  width: 100px;
-}
+  .form-po #sNo {
+    width: 150px;
+  }
 
-.form-po #sNo {
-  width: 150px;
-}
-
-.form-psa #psName {
-  width: 200px;
+  .form-psa #psName {
+    width: 200px;
+  }
 }
 
 .table table,
@@ -353,42 +355,42 @@ input[type="number"]::-webkit-outer-spin-button {
 .dropdown {
   position: relative;
   display: inline-block;
-}
 
-.dropdown i {
-  padding: 5px;
-  font-size: 20px;
-  border-radius: 50%;
-  border: 1px solid var(--color4);
-}
+  i {
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--color4);
 
-.dropdown i:hover {
-  border: 1px solid var(--color2);
-  background-color: var(--color3);
-}
+    &:hover {
+      border: 1px solid var(--color2);
+      background-color: var(--color3);
+    }
+  }
 
-.dropdown-content {
-  right: 0;
-  z-index: 1;
-  display: none;
-  position: absolute;
-  min-width: 160px;
-  border-radius: 5px;
-  background-color: var(--color4);
-  box-shadow: -1px 1px 5px var(--color-box-shadow);
-}
+  .dropdown-content {
+    right: 0;
+    z-index: 1;
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    border-radius: 5px;
+    background-color: var(--color4);
+    box-shadow: -1px 1px 5px var(--color-box-shadow);
 
-.dropdown-content a {
-  text-align: left;
-  font-weight: 500;
-  display: block;
-  padding: 8px 10px;
-  color: var(--color-black);
-  border-bottom: 1px solid var(--color2);
-}
+    a {
+      text-align: left;
+      font-weight: 500;
+      display: block;
+      padding: 8px 10px;
+      color: var(--color-black);
+      border-bottom: 1px solid var(--color2);
 
-.dropdown-content a:hover {
-  background-color: var(--color3);
+      &:hover {
+        background-color: var(--color3);
+      }
+    }
+  }
 }
 
 .dropdown-show {
