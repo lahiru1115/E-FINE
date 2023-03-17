@@ -1,0 +1,87 @@
+@import "alert.less";
+@import "button.less";
+@import "dropdown.less";
+@import "form.less";
+@import "login.less";
+@import "sidebar.less";
+@import "table.less";
+
+@color1: #123b95;
+@color2: #d6d6d6;
+@color3: #f2f2f2;
+@color4: #ffffff;
+
+@color-black: #000000;
+@color-sidebar: #11101d;
+@color-box-shadow: #808080;
+@color-input-border: #ced4da;
+@color-input-disabled: #e9ecef;
+@color-input-focus-border: #86b7fe;
+@color-input-focus-shadow: #0d6efd40;
+@color-btn-primary-hover: #103483;
+
+@color-alert-success-text: #146c43;
+@color-alert-success-bg: #d1e7dd;
+@color-alert-success-border: #a3cfbb;
+@color-alert-warning-text: #b02a37;
+@color-alert-warning-bg: #f8d7da;
+@color-alert-warning-border: #f1aeb5;
+@color-alert-info-text: #087990;
+@color-alert-info-bg: #cff4fc;
+@color-alert-info-border: #9eeaf9;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  overflow: hidden;
+}
+
+a {
+  color: @color-black;
+  text-decoration: none;
+}
+
+.content {
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  background-image: url("../img/background.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.title-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container {
+  width: 100%;
+  overflow: hidden;
+  height: fit-content;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  background-color: @color4;
+  box-shadow: 1px 1px 5px @color-box-shadow;
+}
+
+.heading {
+  text-align: center;
+  color: @color1;
+  text-shadow: 1px 1px 2px @color-box-shadow;
+}
+
+.bx {
+  cursor: pointer;
+}

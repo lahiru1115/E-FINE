@@ -1,0 +1,123 @@
+@import "main.less";
+
+input,
+select,
+textarea {
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid @color-input-border;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &:focus {
+    outline: 0;
+    border-color: @color-input-focus-border;
+    box-shadow: 0 0 0 3px @color-input-focus-shadow;
+  }
+
+  &:focus::placeholder {
+    color: transparent;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+.form td {
+  &:nth-child(1) {
+    width: 20%;
+  }
+  &:not(:last-child) {
+    padding: 0 50px 10px 0;
+  }
+
+  &:nth-child(2) {
+    padding: 0 0 10px 0;
+  }
+}
+
+.form .btn-group {
+  margin-top: 10px;
+}
+
+.disabled {
+  background-color: @color-input-disabled;
+}
+
+.currency {
+  display: flex;
+}
+
+.currency-symbol {
+  width: 30px;
+  text-align: center;
+  padding: 3px 5px 3px 5px;
+  border-radius: 4px 0 0 4px;
+  border: 1px solid @color-input-border;
+  border-right: 0;
+}
+
+.currency-input {
+  border-radius: 0 4px 4px 0;
+}
+
+.form {
+  #name {
+    width: 300px;
+  }
+
+  #email {
+    width: 400px;
+  }
+
+  .alert {
+    margin-left: 20px;
+  }
+}
+
+.form-law {
+  #act {
+    width: 100%;
+  }
+
+  #part {
+    width: 100px;
+  }
+
+  #chapter {
+    width: 100px;
+  }
+
+  #section {
+    width: 100px;
+  }
+
+  #title {
+    width: 100%;
+  }
+
+  #law {
+    width: 100%;
+  }
+
+  #fine {
+    width: 150px;
+  }
+
+  #points {
+    width: 100px;
+  }
+}
+
+.form-po #sNo {
+  width: 150px;
+}
+
+.form-psa #psName {
+  width: 200px;
+}

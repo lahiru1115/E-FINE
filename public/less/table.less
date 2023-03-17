@@ -1,0 +1,70 @@
+@import "main.less";
+
+table {
+  width: 100%;
+}
+
+.table table,
+.table th,
+.table td {
+  // border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.table thead {
+  border-bottom: 2px solid @color-box-shadow;
+}
+
+.table tr:not(:last-child) {
+  border-bottom: 1px solid @color2;
+}
+
+.table th {
+  padding-bottom: 10px;
+
+  &:not(:nth-last-child(-n + 4)) {
+    text-align: left;
+  }
+}
+
+.table td {
+  font-size: 14px;
+  padding: 5px 0;
+
+  &:not(:nth-last-child(-n + 4)) {
+    padding-right: 10px;
+  }
+
+  &:nth-last-child(-n + 4) {
+    text-align: center;
+  }
+
+  &:nth-last-child(-n + 3) {
+    width: 30px;
+  }
+
+  i {
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid @color4;
+
+    &:hover {
+      border: 1px solid @color2;
+      background-color: @color3;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+  }
+}
+
+.table {
+  .alert {
+    float: left;
+    margin-top: 10px;
+  }
+  .alert-none {
+    width: 100%;
+    margin-top: 0px;
+  }
+}

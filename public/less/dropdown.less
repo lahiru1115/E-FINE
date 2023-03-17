@@ -1,0 +1,60 @@
+@import "main.less";
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  i {
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 50%;
+    border: 1px solid @color4;
+
+    &:hover {
+      border: 1px solid @color2;
+      background-color: @color3;
+    }
+  }
+
+  .dropdown-content {
+    right: 0;
+    z-index: 1;
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    border-radius: 5px;
+    background-color: @color4;
+    box-shadow: -1px 1px 5px @color-box-shadow;
+
+    a {
+      text-align: left;
+      font-weight: 500;
+      display: block;
+      padding: 8px 10px;
+      color: @color-black;
+      border-bottom: 1px solid @color2;
+
+      &:hover {
+        background-color: @color3;
+      }
+    }
+  }
+}
+
+.dropdown-show {
+  display: block;
+  transform-origin: top center;
+  animation: growDown 300ms ease-in-out forwards;
+}
+
+@keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

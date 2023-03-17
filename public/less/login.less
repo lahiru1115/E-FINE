@@ -1,0 +1,60 @@
+@import "main.less";
+
+.nav-login {
+  top: 0;
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 5px 10px @color-box-shadow;
+  background-color: @color1;
+
+  .logo {
+    padding: 0 0 0 20px;
+
+    img {
+      height: 44px;
+    }
+  }
+}
+
+.content-login {
+  padding: 0 !important;
+}
+
+.container-login {
+  top: 50%;
+  left: 50%;
+  width: 400px !important;
+  position: absolute;
+  transform: translate(-50%, -50%);
+
+  label {
+    font-weight: bold;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 32px;
+    font-size: 16px;
+    margin: 5px 0 25px 0;
+    border-bottom: 1px solid @color-input-border;
+  }
+
+  button {
+    width: 100%;
+    height: 48px;
+    margin: 20px 0;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .alert {
+    margin: 0 20px;
+  }
+}

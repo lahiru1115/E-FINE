@@ -1,0 +1,36 @@
+@import "main.less";
+
+.alert {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 14px;
+
+  svg {
+    height: 16px;
+    width: 16px;
+    fill: currentColor;
+    margin-right: 10px;
+  }
+}
+
+.alert-success {
+  color: @color-alert-success-text;
+  background-color: @color-alert-success-bg;
+  border: 1px solid @color-alert-success-border;
+}
+
+.alert-warning {
+  color: @color-alert-warning-text;
+  background-color: @color-alert-warning-bg;
+  border: 1px solid @color-alert-warning-border;
+}
+
+.alert-info {
+  color: @color-alert-info-text;
+  background-color: @color-alert-info-bg;
+  border: 1px solid @color-alert-info-border;
+}
