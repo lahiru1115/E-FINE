@@ -1,19 +1,8 @@
-<?php include("sa-dbh.inc.php"); ?>
+<!-- Not optimized -->
 
-<html>
+<?php include_once("sa-dbh.inc.php");
+include_once("sa-head.php"); ?>
 
-<head>
-<?php include("sa-head.php"); ?>
-</head>
-
-<body>
-
-    <div class="home-content">
-        <div class="right-side-items">
-            <?php include("dropdown.php"); ?>
-        </div>
-    </div>
-
-</body>
-
-</html>
+<div class="home-content">
+    <div class="right-side-items"></div>
+</div>

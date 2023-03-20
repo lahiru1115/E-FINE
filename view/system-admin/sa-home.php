@@ -1,25 +1,14 @@
-<?php include("sa-dbh.inc.php"); ?>
+<!-- Not optimized -->
 
-<html>
+<?php
+include_once("sa-dbh.inc.php");
+include_once("sa-head.php");
+include_once("sa-sidebar.php");
+include_once("sa-navbar.php");
+?>
 
-<head>
-    <?php include("sa-head.php"); ?>
-</head>
-
-<body>
-
-    <?php include("sa-sidebar.php"); ?>
-
-    <section class="home-section">
-
-        <?php include("sa-navbar.php"); ?>
-
-        <?php
-        echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-        ?>
-
-    </section>
-
-</body>
-
-</html>
+<section class="home-section">
+    <?php
+    echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+    ?>
+</section>

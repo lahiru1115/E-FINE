@@ -6,21 +6,19 @@ function nextId($conn, $table)
     $sql = "SELECT MAX(id) AS id FROM $table;";
     $result = mysqli_query($conn, $sql);
 
-    if (mysqli_num_rows($result) > 0) {
-        return $result;
-        exit();
+    if (!$result) {
+        return "Unavailable!";
     }
+
+    $row = mysqli_fetch_assoc($result);
+    return $row['id'] ? $row['id'] + 1 : 1;
 }
+
 
 // Login empty input check
 function loginEmptyInput($email, $pwd)
 {
-    if (empty($email)  || empty($pwd)) {
-        $result = true;
-    } else {
-        $result = false;
-    }
-    return $result;
+    return empty($email) || empty($pwd);
 }
 
 // Login validation
@@ -28,7 +26,7 @@ function adminLogin($conn, $email, $pwd, $table)
 {
     $emailExists = emailExists($conn, $email);
 
-    if ($emailExists === false) {
+    if (!$emailExists) {
         header("location: /E-FINE/public/index.php?error=invalidLogin");
         exit();
     }
@@ -36,34 +34,39 @@ function adminLogin($conn, $email, $pwd, $table)
     $pwdHashed = $emailExists["password"];
     $checkPwd = password_verify($pwd, $pwdHashed);
 
-    if ($checkPwd === false) {
+    if (!$checkPwd) {
         header("location: /E-FINE/public/index.php?error=invalidLogin");
         exit();
-    } else if ($checkPwd === true) {
-        session_start();
-        $_SESSION["id"] = $emailExists["id"];
-        $_SESSION["email"] = $emailExists["email"];
-        $_SESSION["role"] = $emailExists["role"];
-        if ($_SESSION["role"] == "System Admin") {
-            header("location: /E-FINE/view/system-admin/sa-home.php");
-            exit();
-        }
-        if ($_SESSION["role"] == "Police Officer") {
-            header("location: /E-FINE/view/police-officer/po-home.php");
-            exit();
-        }
-        if ($_SESSION["role"] == "Police Station Admin") {
-            header("location: /E-FINE/view/police-station-admin/psa-home.php");
-            exit();
-        }
-        if ($_SESSION["role"] == "RMV Admin") {
-            header("location: /E-FINE/view/rmv-admin/rmv-home.php");
-            exit();
-        } else {
-            header("location: /E-FINE/public/index.php?error=invalidLogin");
-            exit();
-        }
     }
+
+    session_start();
+    $_SESSION["id"] = $emailExists["id"];
+    $_SESSION["email"] = $emailExists["email"];
+    $_SESSION["role"] = $emailExists["role"];
+
+    switch ($_SESSION["role"]) {
+        case "System Admin":
+            redirect("/E-FINE/view/system-admin/sa-home.php");
+            break;
+        case "Police Officer":
+            redirect("/E-FINE/view/police-officer/po-home.php");
+            break;
+        case "Police Station Admin":
+            redirect("/E-FINE/view/police-station-admin/psa-home.php");
+            break;
+        case "RMV Admin":
+            redirect("/E-FINE/view/rmv-admin/rmv-home.php");
+            break;
+        default:
+            redirect("/E-FINE/public/index.php?error=invalidLogin");
+            break;
+    }
+}
+
+function redirect($url)
+{
+    header("location: $url");
+    exit();
 }
 
 // Existing email check
@@ -94,34 +97,19 @@ function emailExists($conn, $email)
 // Invalid name check (Must be A-Z, a-z or space) 
 function invalidName($name)
 {
-    if (!preg_match("/^[a-zA-Z\s]*$/", $name)) {
-        $result = true;
-    } else {
-        $result = false;
-    }
-    return $result;
+    return !preg_match("/^[a-zA-Z\s]*$/", $name);
 }
 
 // Invalid email check
 function invalidEmail($email)
 {
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $result = true;
-    } else {
-        $result = false;
-    }
-    return $result;
+    return !filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
 // Invalid password check (Must be at least 4 characters) 
 function invalidPwd($pwd)
 {
-    if (strlen($pwd) >= 4) {
-        $result = true;
-    } else {
-        $result = false;
-    }
-    return $result;
+    return strlen($pwd) >= 4;
 }
 
 // Add login credentials for SA, PO, PSA and RMV

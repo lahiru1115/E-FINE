@@ -31,7 +31,7 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    if (emailExists($conn, $email, $table) !== false) {
+    if (emailExists($conn, $email) !== false) {
         header("location: /E-FINE/view/system-admin/sa-register.php?error=emailTaken");
         exit();
     } else {
@@ -41,6 +41,6 @@ if (isset($_POST["submit"])) {
         exit();
     }
 } else {
-    header("location: /E-FINE/view/system-admin/sa-register.php");
+    header("location: /E-FINE/view/system-admin/sa-register.php?error=stmtFailed");
     exit();
 }

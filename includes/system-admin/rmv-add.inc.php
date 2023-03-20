@@ -13,7 +13,7 @@ $userId = $_SESSION["id"];
 
 if (isset($_POST["submit"])) {
 
-    if (rmvAddEmptyInput($name, $email) !== false) {
+    if (psarmvAddEmptyInput($name, $email) !== false) {
         header("location: /E-FINE/view/system-admin/rmv-add.php?error=emptyInput");
         exit();
     }
@@ -34,10 +34,10 @@ if (isset($_POST["submit"])) {
     } else {
         rmvAdd($conn, $name, $email, $userId);
         adminRegister($conn, $email, $pwd, $role, $table);
-        header("location: /E-FINE/view/system-admin/rmv-add.php?error=none");
+        header("location: /E-FINE/view/system-admin/rmv-view.php?error=none");
         exit();
     }
 } else {
-    header("location: /E-FINE/view/system-admin/rmv-add.php");
+    header("location: /E-FINE/view/system-admin/rmv-view.php?error=stmtFailed");
     exit();
 }

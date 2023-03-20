@@ -14,14 +14,8 @@ $points = $_POST["points"];
 $userId = $_SESSION["id"];
 
 if (isset($_POST["submit"])) {
-
-    if (lawAddEmptyInput($part, $chapter, $section, $title, $law, $fine, $points) !== false) {
-        header("location: /E-FINE/view/system-admin/law-add.php?error=emptyInput");
-        exit();
-    }
-
-    lawAdd($conn, $act, $part, $chapter, $section, $title, $law, $fine, $points, $userId);
+    adminUpdateIssue($conn, $issueId, $status);
 } else {
-    header("location: /E-FINE/view/system-admin/law-view.php?error=stmtFailed");
+    header("location: ../admin/issue/viewIssue.php");
     exit();
 }

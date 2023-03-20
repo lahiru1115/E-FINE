@@ -15,7 +15,7 @@ $userId = $_SESSION["id"];
 
 if (isset($_POST["submit"])) {
 
-    if (psaAddEmptyInput($name, $email) !== false) {
+    if (psarmvAddEmptyInput($name, $email) !== false) {
         header("location: /E-FINE/view/system-admin/psa-add.php?error=emptyInput");
         exit();
     }
@@ -36,10 +36,10 @@ if (isset($_POST["submit"])) {
     } else {
         psaAdd($conn, $province, $district, $name, $email, $userId);
         adminRegister($conn, $email, $pwd, $role, $table);
-        header("location: /E-FINE/view/system-admin/psa-add.php?error=none");
+        header("location: /E-FINE/view/system-admin/psa-view.php?error=none");
         exit();
     }
 } else {
-    header("location: /E-FINE/view/system-admin/psa-add.php");
+    header("location: /E-FINE/view/system-admin/psa-view.php?error=stmtFailed");
     exit();
 }

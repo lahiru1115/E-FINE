@@ -37,10 +37,10 @@ if (isset($_POST["submit"])) {
     } else {
         poAdd($conn, $name, $sNo, $rank, $pStation, $email, $userId);
         adminRegister($conn, $email, $pwd, $role, $table);
-        header("location: /E-FINE/view/system-admin/po-add.php?error=none");
+        header("location: /E-FINE/view/system-admin/po-view.php?error=none");
         exit();
     }
 } else {
-    header("location: /E-FINE/view/system-admin/po-add.php");
+    header("location: /E-FINE/view/system-admin/po-view.php?error=stmtFailed");
     exit();
 }
