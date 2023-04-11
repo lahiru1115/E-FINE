@@ -45,7 +45,7 @@ function viewAll($conn, $table)
 }
 
 // Law add empty input check
-function lawAddEmptyInput($part, $chapter, $section, $title, $law, $fine, $points)
+function lawEmptyInput($part, $chapter, $section, $title, $law, $fine, $points)
 {
     return empty($part) || empty($chapter) || empty($section) || empty($title) || empty($law) || empty($fine) || empty($points);
 }
@@ -67,7 +67,7 @@ function lawAdd($conn, $act, $part, $chapter, $section, $title, $law, $fine, $po
     exit();
 }
 
-function getLawData($conn)
+function lawGetData($conn)
 {
     if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {
         header("location: /E-FINE/view/system-admin/law-view.php?error=stmtFailed");
@@ -91,24 +91,22 @@ function getLawData($conn)
     mysqli_stmt_close($stmt);
 }
 
-function lawUpdate()
+function lawUpdate($conn, $id, $act, $part, $chapter, $section, $title, $law, $fine, $points)
 {
-    // Admin update issue (status)
-function adminUpdateIssue($conn, $issueId, $status)
-{
-    // $sql = "UPDATE issue SET status=" . $status . " WHERE issueId='$issueId';";
-    $sql = "UPDATE issue SET status=$status WHERE issueId='$issueId';";
-    $update_query = mysqli_query($conn, $sql);
+    $sql = "UPDATE laws SET act=?, part=?, chapter=?, section=?, title=?, law=?, fine=?, points=? WHERE id=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "siiisiiis", $act, $part, $chapter, $section, $title, $law, $fine, $points, $id);
+    $update_query = mysqli_stmt_execute($stmt);
 
     if ($update_query) {
-        header("location: ../admin/issues/viewIssue.php?error=none");
+        header("location: /E-FINE/view/system-admin/law-view.php?error=updated");
         exit();
     } else {
-        header("location: ../admin/issues/viewIssue.php?error=cantUpdate");
+        header("location: /E-FINE/view/system-admin/law-view.php?error=cantUpdate");
         exit();
     }
 }
-}
+
 
 // Delete law
 function lawDelete($conn)
@@ -162,6 +160,10 @@ function poAdd($conn, $name, $sNo, $rank, $pStation, $email, $userId)
     mysqli_stmt_close($stmt);
 }
 
+function poGetData()
+{
+}
+
 function poUpdate()
 {
 }
@@ -192,6 +194,10 @@ function psaAdd($conn, $province, $district, $name, $email, $userId)
     mysqli_stmt_close($stmt);
 }
 
+function psaGetData()
+{
+}
+
 function psaUpdate()
 {
 }
@@ -213,6 +219,10 @@ function rmvAdd($conn, $name, $email, $userId)
     mysqli_stmt_bind_param($stmt, "ssi", $name, $email, $userId);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
+}
+
+function rmvGetData()
+{
 }
 
 function rmvUpdate()

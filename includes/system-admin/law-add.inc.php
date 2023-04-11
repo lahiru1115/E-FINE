@@ -15,7 +15,7 @@ $userId = $_SESSION["id"];
 
 if (isset($_POST["submit"])) {
 
-    if (lawAddEmptyInput($part, $chapter, $section, $title, $law, $fine, $points) !== false) {
+    if (lawEmptyInput($part, $chapter, $section, $title, $law, $fine, $points) !== false) {
         header("location: /E-FINE/view/system-admin/law-add.php?error=emptyInput");
         exit();
     }

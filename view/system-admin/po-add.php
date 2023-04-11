@@ -41,55 +41,55 @@ $alert = ob_get_clean();
                     <tr>
                         <td><label>Rank</label></td>
                         <td>
-                            <select name="rank" id="rank">
-                                <option value="IGP">IGP</option>
-                                <option value="SDIG">SDIG</option>
-                                <option value="DIG">DIG</option>
-                                <option value="SSP">SSP</option>
-                                <option value="SP">SP</option>
-                                <option value="ASP">ASP</option>
-                                <option value="CIP">CIP</option>
-                                <option value="IP">IP</option>
-                                <option value="SI">SI</option>
-                                <option value="PS 1">PS 1</option>
-                                <option value="PS 2">PS 2</option>
-                                <option value="PC 1">PC 1</option>
-                                <option value="PC 2">PC 2</option>
-                                <option value="PC 3">PC 3</option>
-                                <option value="PC 4">PC 4</option>
-                            </select>
+                            <input class="select" name="rank" id="select-rank" placeholder="Select your option">
+                            <datalist id="rank">
+                                <?php
+                                $options = array("IGP", "SDIG", "DIG", "SSP", "SP", "ASP", "CIP", "IP", "SI", "PS 1", "PS 2", "PC 1", "PC 2", "PC 3", "PC 4");
+                                foreach ($options as $option) {
+                                    echo "<option value='" . $option . "'>" . $option . "</option>";
+                                }
+                                ?>
+                            </datalist>
                         </td>
                     </tr>
                     <tr>
                         <td><label>Police Station</label></td>
                         <td>
-                            <select name="pStation" id="pStation">
-                                <option value="Colombo">Colombo</option>
-                                <option value="Gampaha">Gampaha</option>
-                                <option value="Kalutara">Kalutara</option>
-                                <option value="Kandy">Kandy</option>
-                                <option value="Matale">Matale</option>
-                                <option value="Nuwara Eliya">Nuwara Eliya</option>
-                                <option value="Galle">Galle</option>
-                                <option value="Matara">Matara</option>
-                                <option value="Hambantota">Hambantota</option>
-                                <option value=" Jaffna"> Jaffna</option>
-                                <option value="Kilinochchi">Kilinochchi</option>
-                                <option value="Mannar">Mannar</option>
-                                <option value="Vavuniya">Vavuniya</option>
-                                <option value="Mullaitivu">Mullaitivu</option>
-                                <option value="Batticaloa">Batticaloa</option>
-                                <option value="Ampara">Ampara</option>
-                                <option value="Trincomalee">Trincomalee</option>
-                                <option value="Kurunegala">Kurunegala</option>
-                                <option value="Puttalam">Puttalam</option>
-                                <option value="Anuradhapura">Anuradhapura</option>
-                                <option value="Polonnaruwa">Polonnaruwa</option>
-                                <option value="Badulla">Badulla</option>
-                                <option value="Moneragala">Moneragala</option>
-                                <option value="Ratnapura">Ratnapura</option>
-                                <option value="Kegalle">Kegalle</option>
-                            </select>
+                            <input class="select" name="pStation" id="select-pStation" placeholder="Select your option">
+                            <datalist id="pStation">
+                                <?php
+                                $options = array(
+                                    "Colombo",
+                                    "Gampaha",
+                                    "Kalutara",
+                                    "Kandy",
+                                    "Matale",
+                                    "Nuwara Eliya",
+                                    "Galle",
+                                    "Matara",
+                                    "Hambantota",
+                                    "Jaffna",
+                                    "Kilinochchi",
+                                    "Mannar",
+                                    "Vavuniya",
+                                    "Mullaitivu",
+                                    "Batticaloa",
+                                    "Ampara",
+                                    "Trincomalee",
+                                    "Kurunegala",
+                                    "Puttalam",
+                                    "Anuradhapura",
+                                    "Polonnaruwa",
+                                    "Badulla",
+                                    "Moneragala",
+                                    "Ratnapura",
+                                    "Kegalle"
+                                );
+                                foreach ($options as $option) {
+                                    echo "<option value='" . $option . "'>" . $option . "</option>";
+                                }
+                                ?>
+                            </datalist>
                         </td>
                     </tr>
                     <tr>
@@ -110,7 +110,9 @@ $alert = ob_get_clean();
                 </table>
             </form>
         </div>
-        
+
     </div>
 
 </section>
+
+<script src="../../public/js/datalist-po.js"></script>

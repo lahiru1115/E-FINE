@@ -4,7 +4,7 @@ include_once("sa-head.php");
 include_once("sa-sidebar.php");
 include_once("sa-navbar.php");
 
-$row = getLawData($conn);
+$row = lawGetData($conn);
 
 ob_start();
 include "../../includes/main/alerts.inc.php";
@@ -24,14 +24,20 @@ $alert = ob_get_clean();
                 <table class="form form-law">
                     <tr>
                         <td><label>Violation Id</label></td>
-                        <td><input type="text" name="id" id="id" class="disabled" disabled value="<?php echo $row['id']; ?>"></td>
+                        <td><input type="text" name="id" id="id" class="disabled" readonly value="<?php echo $row['id']; ?>"></td>
                     </tr>
                     <tr>
                         <td><label>Act</label></td>
                         <td>
-                            <select name="act" id="act">
-                                <option value="Motor Traffic (AMENDMENT) Act, No. 8 of 2009" <?php if ($row['act'] == "Motor Traffic (AMENDMENT) Act, No. 8 of 2009") echo 'selected="selected"'; ?>><?php echo $row['act']; ?></option>
-                            </select>
+                            <input class="select" name="act" id="select-act" value="<?php echo $row['act']; ?>">
+                            <datalist id="act">
+                                <?php
+                                $options = array("Motor Traffic (AMENDMENT) Act, No. 8 of 2009");
+                                foreach ($options as $option) {
+                                    echo "<option value='" . $option . "'>" . $option . "</option>";
+                                }
+                                ?>
+                            </datalist>
                         </td>
                     </tr>
                     <tr>
@@ -84,3 +90,5 @@ $alert = ob_get_clean();
     </div>
 
 </section>
+
+<script src="../../public/js/datalist-law.js"></script>

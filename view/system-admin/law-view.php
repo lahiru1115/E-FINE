@@ -18,6 +18,25 @@ include_once("sa-navbar.php"); ?>
         </div>
 
         <div class="container">
+            
+        </div>
+
+        <div class="container">
+            <span>Search by</span>
+            <input class="select" name="act" id="select-act" placeholder="Select your option">
+            <datalist id="act">
+                <?php
+                $options = array("Motor");
+                foreach ($options as $option) {
+                    echo "<option value='" . $option . "'>" . $option . "</option>";
+                }
+                ?>
+            </datalist>
+            <input type="text" name="title" id="title">
+            <button class="btn btn-secondary" type="submit" name="submit">Save</button>
+        </div>
+
+        <div class="container">
             <div class="table">
                 <table>
                     <thead>
@@ -71,3 +90,5 @@ include_once("sa-navbar.php"); ?>
     </div>
 
 </section>
+
+<script src="../../public/js/datalist-law.js"></script>

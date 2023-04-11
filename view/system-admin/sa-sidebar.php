@@ -26,7 +26,7 @@ include_once("sa-head.php"); ?>
             </a>
         </li>
 
-        <li <?php if ($current_page == 'law-view.php' || $current_page == 'law-add.php') {
+        <li <?php if ($current_page == 'law-view.php' || $current_page == 'law-add.php' || $current_page == 'law-edit.php') {
                 echo 'class="current"';
             } ?>>
             <a href="law-view.php">

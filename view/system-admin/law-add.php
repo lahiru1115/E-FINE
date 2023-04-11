@@ -31,9 +31,15 @@ $alert = ob_get_clean();
                     <tr>
                         <td><label>Act</label></td>
                         <td>
-                            <select name="act" id="act">
-                                <option value="Motor Traffic (AMENDMENT) Act, No. 8 of 2009">Motor Traffic (AMENDMENT) Act, No. 8 of 2009</option>
-                            </select>
+                            <input class="select" name="act" id="select-act" placeholder="Select your option">
+                            <datalist id="act">
+                                <?php
+                                $options = array("Motor Traffic (AMENDMENT) Act, No. 8 of 2009");
+                                foreach ($options as $option) {
+                                    echo "<option value='" . $option . "'>" . $option . "</option>";
+                                }
+                                ?>
+                            </datalist>
                         </td>
                     </tr>
                     <tr>
@@ -86,3 +92,5 @@ $alert = ob_get_clean();
     </div>
 
 </section>
+
+<script src="../../public/js/datalist-law.js"></script>
