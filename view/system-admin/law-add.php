@@ -44,15 +44,15 @@ $alert = ob_get_clean();
                     </tr>
                     <tr>
                         <td><label>Part</label></td>
-                        <td><input type="number" name="part" id="part" min="1"></td>
+                        <td><input type="number" name="part_number" id="part_number" min="1"></td>
                     </tr>
                     <tr>
                         <td><label>Chapter</label></td>
-                        <td><input type="number" name="chapter" id="chapter" min="1"></td>
+                        <td><input type="number" name="chapter_number" id="chapter_number" min="1"></td>
                     </tr>
                     <tr>
                         <td><label>Section</label></td>
-                        <td><input type="number" name="section" id="section" min="1"></td>
+                        <td><input type="number" name="section_number" id="section_number" min="1"></td>
                     </tr>
                     <tr>
                         <td><label>Title</label></td>
@@ -60,20 +60,20 @@ $alert = ob_get_clean();
                     </tr>
                     <tr>
                         <td><label>Law</label></td>
-                        <td><textarea name="law" id="law" cols="50" rows="10"></textarea></td>
+                        <td><textarea name="law_text" id="law_text" cols="50" rows="10"></textarea></td>
                     </tr>
                     <tr>
                         <td><label>Fine</label></td>
                         <td>
                             <div class="currency">
                                 <input class="currency-symbol disabled" disabled value="Rs"></input>
-                                <input type="number" name="fine" id="fine" class="currency-input" min="0">
+                                <input type="number" name="fine_amount" id="fine_amount" class="currency-input" min="0">
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td><label>Points</label></td>
-                        <td><input type="number" name="points" id="points" min="0" max="24"></td>
+                        <td><input type="number" name="points_deducted" id="points_deducted" min="0" max="24"></td>
                     </tr>
                     <tr>
                         <td colspan="2">

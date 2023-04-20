@@ -42,15 +42,15 @@ $alert = ob_get_clean();
                     </tr>
                     <tr>
                         <td><label>Part</label></td>
-                        <td><input type="number" name="part" id="part" min="1" value="<?php echo $row['part']; ?>"></td>
+                        <td><input type="number" name="part_number" id="part_number" min="1" value="<?php echo $row['part_number']; ?>"></td>
                     </tr>
                     <tr>
                         <td><label>Chapter</label></td>
-                        <td><input type="number" name="chapter" id="chapter" min="1" value="<?php echo $row['chapter']; ?>"></td>
+                        <td><input type="number" name="chapter_number" id="chapter_number" min="1" value="<?php echo $row['chapter_number']; ?>"></td>
                     </tr>
                     <tr>
                         <td><label>Section</label></td>
-                        <td><input type="number" name="section" id="section" min="1" value="<?php echo $row['section']; ?>"></td>
+                        <td><input type="number" name="section_number" id="section_number" min="1" value="<?php echo $row['section_number']; ?>"></td>
                     </tr>
                     <tr>
                         <td><label>Title</label></td>
@@ -58,20 +58,20 @@ $alert = ob_get_clean();
                     </tr>
                     <tr>
                         <td><label>Law</label></td>
-                        <td><textarea name="law" id="law" cols="50" rows="10"><?php echo $row['law']; ?></textarea></td>
+                        <td><textarea name="law_text" id="law_text" cols="50" rows="10"><?php echo $row['law_text']; ?></textarea></td>
                     </tr>
                     <tr>
                         <td><label>Fine</label></td>
                         <td>
                             <div class="currency">
                                 <input class="currency-symbol disabled" disabled value="Rs"></input>
-                                <input type="number" name="fine" id="fine" class="currency-input" min="0" value="<?php echo $row['fine']; ?>">
+                                <input type="number" name="fine_amount" id="fine_amount" class="currency-input" min="0" value="<?php echo $row['fine_amount']; ?>">
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td><label>Points</label></td>
-                        <td><input type="number" name="points" id="points" min="0" max="24" value="<?php echo $row['points']; ?>"></td>
+                        <td><input type="number" name="points_deducted" id="points_deducted" min="0" max="24" value="<?php echo $row['points_deducted']; ?>"></td>
                     </tr>
                     <tr>
                         <td colspan="2">

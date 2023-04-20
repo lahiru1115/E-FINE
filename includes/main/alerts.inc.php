@@ -1,67 +1,28 @@
 <?php
-if (isset($_GET["error"])) {
-	if ($_GET["error"] == "emptyInput") {
-		echo "<div class='alert alert-warning'>
-					<svg><use xlink:href='#warning'></use></svg>
-					<span>Fill in all the fields!</span>
-				</div>";
-	} else if ($_GET["error"] == "invalidLogin") {
-		echo "<div class='alert alert-warning'>
-					<svg><use xlink:href='#warning'></use></svg>
-					<span>Invalid Email or Password!</span>
-				</div>";
-	} else if ($_GET["error"] == "invalidName") {
-		echo "<div class='alert alert-warning'>
-					<svg><use xlink:href='#warning'></use></svg>
-					<span>Invalid Name! Use only alphabet letters.</span>
-				</div>";
-	} else if ($_GET["error"] == "invalidEmail") {
-		echo "<div class='alert alert-warning'>
-					<svg><use xlink:href='#warning'></use></svg>
-					<span>Invalid Email!</span>
-				</div>";
-	} else if ($_GET["error"] == "invalidPwd") {
-		echo "<div class='alert alert-warning'>
-					<svg><use xlink:href='#warning'></use></svg>
-					<span>Password must be at least 4 characters!</span>
-				</div>";
-	} else if ($_GET["error"] == "emailTaken") {
-		echo "<div class='alert alert-warning'>
-					<svg><use xlink:href='#warning'></use></svg>
-					<span>Email already taken!</span>
-				</div>";
-	} else if ($_GET["error"] == "stmtFailed") {
-		echo "<div class='alert alert-warning'>
-					<svg><use xlink:href='#warning'></use></svg>
-					<span>Something went wrong!</span>
-				</div>";
-	} else if ($_GET["error"] == "cantDelete") {
-		echo "<div class='alert alert-warning'>
-					<svg><use xlink:href='#warning'></use></svg>
-					<span>Can't delete at the moment!</span>
-				</div>";
-	} else if ($_GET["error"] == "cantUpdate") {
-		echo "<div class='alert alert-warning'>
-					<svg><use xlink:href='#warning'></use></svg>
-					<span>Can't update at the moment!</span>
-				</div>";
-	} else if ($_GET["error"] == "updated") {
-		echo "<div class='alert alert-success'>
-					<svg><use xlink:href='#success'></use></svg>
-					<span>Successfully Updated!</span>
-				</div>";
-	} else if ($_GET["error"] == "deleted") {
-		echo "<div class='alert alert-success'>
-					<svg><use xlink:href='#success'></use></svg>
-					<span>Successfully Deleted!</span>
-				</div>";
-	} else if ($_GET["error"] == "none") {
-		echo "<div class='alert alert-success'>
-					<svg><use xlink:href='#success'></use></svg>
-					<span>Successfully Added!</span>
-				</div>";
-	}
-} ?>
+$errors = array(
+	"emptyInput" => "Fill in all the fields!",
+	"invalidLogin" => "Invalid Email or Password!",
+	"invalidName" => "Invalid Name! Use only alphabet letters.",
+	"invalidEmail" => "Invalid Email!",
+	"invalidPassword" => "Password must be at least 4 characters!",
+	"emailTaken" => "Email already taken!",
+	"stmtFailed" => "Something went wrong!",
+	"cantDelete" => "Can't delete at the moment!",
+	"cantUpdate" => "Can't update at the moment!",
+	"updated" => "Successfully Updated!",
+	"deleted" => "Successfully Deleted!",
+	"none" => "Successfully Added!"
+);
+
+if (isset($_GET["error"]) && isset($errors[$_GET["error"]])) {
+	$error = $errors[$_GET["error"]];
+	$type = ($_GET["error"] == "updated" || $_GET["error"] == "deleted" || $_GET["error"] == "none") ? "success" : "warning";
+	echo "<div class='alert alert-$type'>
+            <svg><use xlink:href='#$type'></use></svg>
+            <span>$error</span>
+        </div>";
+}
+?>
 
 <svg style="display: none;">
 	<symbol id="success">

@@ -15,11 +15,7 @@ include_once("sa-navbar.php"); ?>
             <div class="btn-group">
                 <a href="law-add.php"><button class="btn btn-primary">Add New</button></a>
             </div>
-        </div>
-
-        <div class="container">
-            
-        </div>
+        </div>  
 
         <div class="container">
             <span>Search by</span>
@@ -46,7 +42,7 @@ include_once("sa-navbar.php"); ?>
                             <th>Title</th>
                             <th>Fine</th>
                             <th>Points</th>
-                            <th>Timestamp</th>
+                            <th>Created at</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -70,9 +66,9 @@ include_once("sa-navbar.php"); ?>
                                         } else {
                                             echo $row['title'];
                                         } ?></td>
-                                    <td><?php echo $row['fine']; ?></td>
-                                    <td><?php echo $row['points']; ?></td>
-                                    <td><?php echo $row['timestamp']; ?></td>
+                                    <td><?php echo $row['fine_amount']; ?></td>
+                                    <td><?php echo $row['points_deducted']; ?></td>
+                                    <td><?php echo $row['created_at']; ?></td>
                                     <td><a href="law-viewMore.php?id=<?php echo $row['id']; ?>"><i class='bx bx-detail'></i></a></td>
                                     <td><a href="law-edit.php?id=<?php echo $row['id']; ?>"><i class='bx bxs-edit'></i></a></td>
                                     <td><a href="../../includes/system-admin/law-delete.inc.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Delete?')"><i class="bx bx-trash delBtn"></i></a></td>

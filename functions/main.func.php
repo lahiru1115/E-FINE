@@ -16,13 +16,13 @@ function nextId($conn, $table)
 
 
 // Login empty input check
-function loginEmptyInput($email, $pwd)
+function loginEmptyInput($email, $password)
 {
-    return empty($email) || empty($pwd);
+    return empty($email) || empty($password);
 }
 
 // Login validation
-function adminLogin($conn, $email, $pwd, $table)
+function adminLogin($conn, $email, $password, $table)
 {
     $emailExists = emailExists($conn, $email);
 
@@ -31,20 +31,20 @@ function adminLogin($conn, $email, $pwd, $table)
         exit();
     }
 
-    $pwdHashed = $emailExists["password"];
-    $checkPwd = password_verify($pwd, $pwdHashed);
+    $hashedPassword = $emailExists["password"];
+    $checkPassword = password_verify($password, $hashedPassword);
 
-    if (!$checkPwd) {
+    if (!$checkPassword) {
         header("location: /E-FINE/public/index.php?error=invalidLogin");
         exit();
     }
 
     session_start();
-    $_SESSION["id"] = $emailExists["id"];
+    $_SESSION["user_id"] = $emailExists["user_id"];
     $_SESSION["email"] = $emailExists["email"];
-    $_SESSION["role"] = $emailExists["role"];
+    $_SESSION["user_role"] = $emailExists["user_role"];
 
-    switch ($_SESSION["role"]) {
+    switch ($_SESSION["user_role"]) {
         case "System Admin":
             redirect("/E-FINE/view/system-admin/sa-home.php");
             break;
@@ -72,7 +72,7 @@ function redirect($url)
 // Existing email check
 function emailExists($conn, $email)
 {
-    $sql = "SELECT * FROM admin_login WHERE email = ?";
+    $sql = "SELECT * FROM user_login WHERE email = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: /E-FINE/view/system-admin/sa-register.php?error=stmtFailed");
@@ -107,24 +107,24 @@ function invalidEmail($email)
 }
 
 // Invalid password check (Must be at least 4 characters) 
-function invalidPwd($pwd)
+function invalidPassword($password)
 {
-    return strlen($pwd) >= 4;
+    return strlen($password) >= 4;
 }
 
 // Add login credentials for SA, PO, PSA and RMV
-function adminRegister($conn, $email, $pwd, $role, $table)
+function adminRegister($conn, $email, $password, $user_role, $table)
 {
-    $sql = "INSERT INTO admin_login (id, email, password, role, timestamp) VALUES ((SELECT MAX(id) FROM $table), ?, ?, ?, now());";
+    $sql = "INSERT INTO user_login (user_id, email, password, user_role, created_at) VALUES ((SELECT MAX(id) FROM $table), ?, ?, ?, now());";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: /E-FINE/view/system-admin/sa-register.php?error=stmtFailed");
         exit();
     }
 
-    $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "sss", $email, $hashedPwd, $role);
+    mysqli_stmt_bind_param($stmt, "sss", $email, $hashedPassword, $user_role);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }

@@ -33,8 +33,8 @@ $alert = ob_get_clean();
                     <td><input type="text" name="email" id="email"></td>
                 </tr>
                 <tr>
-                    <td><label for="pwd">Password</label></td>
-                    <td><input type="password" name="pwd" id="pwd"></td>
+                    <td><label for="password">Password</label></td>
+                    <td><input type="password" name="password" id="password"></td>
                 </tr>
                 <tr>
                     <td colspan="2">

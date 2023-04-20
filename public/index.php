@@ -26,7 +26,7 @@
                 <label>Email</label>
                 <input type="text" placeholder="Enter your email" name="email" id="email">
                 <label>Password</label>
-                <input type="password" placeholder="Enter your password" name="pwd" id="pwd">
+                <input type="password" placeholder="Enter your password" name="password" id="password">
                  <?php include("../includes/main/alerts.inc.php"); ?>
                 <button class="btn btn-primary" type="submit" name="submit">LOGIN</button>
             </form>

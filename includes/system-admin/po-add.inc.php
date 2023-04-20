@@ -4,43 +4,46 @@ require_once('/Localhost/E-FINE/config/db_conn.php');
 require_once('/Localhost/E-FINE/functions/main.func.php');
 require_once('/Localhost/E-FINE/functions/system-admin.func.php');
 
+define('PO_ADD_URL', '/E-FINE/view/system-admin/po-add.php');
+define('PO_VIEW_URL', '/E-FINE/view/system-admin/po-view.php');
+
 $name = $_POST["name"];
-$sNo = $_POST["sNo"];
+$service_number = $_POST["service_number"];
 $rank = $_POST["rank"];
-$pStation = $_POST["pStation"];
+$police_station = $_POST["police_station"];
 $email = $_POST["email"];
-$pwd = "abc123";
+$password = "abc123";
 $table = "police_officer";
-$role = "Police Officer";
-$userId = $_SESSION["id"];
+$user_role = "Police Officer";
+$user_id = $_SESSION["user_id"];
 
 if (isset($_POST["submit"])) {
 
-    if (poAddEmptyInput($name, $sNo, $email) !== false) {
-        header("location: /E-FINE/view/system-admin/po-add.php?error=emptyInput");
+    if (poAddEmptyInput($name, $service_number, $email) !== false) {
+        header("location: " . PO_ADD_URL . "?error=emptyInput");
         exit();
     }
 
     if (invalidName($name) !== false) {
-        header("location: /E-FINE/view/system-admin/po-add.php?error=invalidName");
+        header("location: " . PO_ADD_URL . "?error=invalidName");
         exit();
     }
 
     if (invalidEmail($email) !== false) {
-        header("location: /E-FINE/view/system-admin/po-add.php?error=invalidEmail");
+        header("location: " . PO_ADD_URL . "?error=invalidEmail");
         exit();
     }
 
     if (emailExists($conn, $email) !== false) {
-        header("location: /E-FINE/view/system-admin/po-add.php?error=emailTaken");
+        header("location: " . PO_ADD_URL . "?error=emailTaken");
         exit();
     } else {
-        poAdd($conn, $name, $sNo, $rank, $pStation, $email, $userId);
-        adminRegister($conn, $email, $pwd, $role, $table);
-        header("location: /E-FINE/view/system-admin/po-view.php?error=none");
+        poAdd($conn, $name, $service_number, $rank, $police_station, $email, $user_id);
+        adminRegister($conn, $email, $password, $user_role, $table);
+        header("location: " . PO_VIEW_URL . "?error=none");
         exit();
     }
 } else {
-    header("location: /E-FINE/view/system-admin/po-view.php?error=stmtFailed");
+    header("location: " . PO_VIEW_URL . "?error=stmtFailed");
     exit();
 }
