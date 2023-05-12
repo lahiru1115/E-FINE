@@ -24,41 +24,31 @@ $alert = ob_get_clean();
                 <table class="form form-law">
                     <tr>
                         <td><label>Violation Id</label></td>
-                        <td><input type="text" name="id" id="id" class="disabled" readonly value="<?php echo $row['id']; ?>"></td>
+                        <td><input type="text" name="id" id="id" class="disabled" value="<?php echo $row['id']; ?>" readonly></td>
                     </tr>
                     <tr>
                         <td><label>Act</label></td>
-                        <td>
-                            <input class="select" name="act" id="select-act" value="<?php echo $row['act']; ?>">
-                            <datalist id="act">
-                                <?php
-                                $options = array("Motor Traffic (AMENDMENT) Act, No. 8 of 2009");
-                                foreach ($options as $option) {
-                                    echo "<option value='" . $option . "'>" . $option . "</option>";
-                                }
-                                ?>
-                            </datalist>
-                        </td>
+                        <td><input type="text" name="act" id="act" class="disabled" value="<?php echo $row['act']; ?>" readonly></td>
                     </tr>
                     <tr>
                         <td><label>Part</label></td>
-                        <td><input type="number" name="part_number" id="part_number" min="1" value="<?php echo $row['part_number']; ?>"></td>
+                        <td><input type="number" name="part_number" id="part_number" min="1" class="disabled" value="<?php echo $row['part_number']; ?>" readonly></td>
                     </tr>
                     <tr>
                         <td><label>Chapter</label></td>
-                        <td><input type="number" name="chapter_number" id="chapter_number" min="1" value="<?php echo $row['chapter_number']; ?>"></td>
+                        <td><input type="number" name="chapter_number" id="chapter_number" min="1" class="disabled" value="<?php echo $row['chapter_number']; ?>" readonly></td>
                     </tr>
                     <tr>
                         <td><label>Section</label></td>
-                        <td><input type="number" name="section_number" id="section_number" min="1" value="<?php echo $row['section_number']; ?>"></td>
+                        <td><input type="number" name="section_number" id="section_number" min="1" class="disabled" value="<?php echo $row['section_number']; ?>" readonly></td>
                     </tr>
                     <tr>
                         <td><label>Title</label></td>
-                        <td><input type="text" name="title" id="title" value="<?php echo $row['title']; ?>"></td>
+                        <td><input type="text" name="title" id="title" class="disabled" value="<?php echo $row['title']; ?>" readonly></td>
                     </tr>
                     <tr>
                         <td><label>Law</label></td>
-                        <td><textarea name="law_text" id="law_text" cols="50" rows="10"><?php echo $row['law_text']; ?></textarea></td>
+                        <td><textarea name="law_text" id="law_text" cols="50" rows="10" class="disabled" readonly><?php echo $row['law_text']; ?></textarea></td>
                     </tr>
                     <tr>
                         <td><label>Fine</label></td>

@@ -21,10 +21,24 @@ function saAdd($conn, $name, $email)
     mysqli_stmt_close($stmt);
 }
 
-// View all from any table
-function viewAll($conn, $table)
+// Police officer add empty input check
+function searchEmptyInput($search_term)
 {
-    $stmt = $conn->prepare("SELECT * FROM $table");
+    return empty($search_term);
+}
+
+function viewAll($conn, $table, $page, $limit, $search_column = "", $search_term = "")
+{
+    // Calculate offset
+    $offset = ($page - 1) * $limit;
+
+    // Prepare and execute query
+    if ($search_column && $search_term) {
+        $stmt = $conn->prepare("SELECT * FROM $table WHERE $search_column LIKE '$search_term%' ORDER BY id DESC LIMIT ?, ?");
+    } else {
+        $stmt = $conn->prepare("SELECT * FROM $table ORDER BY id DESC LIMIT ?, ?");
+    }
+    $stmt->bind_param("ii", $offset, $limit);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -44,10 +58,24 @@ function viewAll($conn, $table)
     }
 }
 
+// Get total number of records
+function getTotalRecords($conn, $table, $search_column = "", $search_term = "") {
+    if ($search_column && $search_term) {
+        $sql = "SELECT COUNT(*) as count FROM $table WHERE $search_column LIKE '$search_term%'";
+    } else {
+        $sql = "SELECT COUNT(*) as count FROM $table";
+    }
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $count = $row['count'];
+    return $count;
+}
+
+
 // Law add empty input check
-function lawEmptyInput($part_number, $chapter_number, $section_number, $title, $law_text, $fine_amount, $points_deducted)
+function lawEmptyInput($fine_amount, $points_deducted)
 {
-    return empty($part_number) || empty($chapter_number) || empty($section_number) || empty($title) || empty($law_text) || empty($fine_amount) || empty($points_deducted);
+    return empty($fine_amount) || empty($points_deducted);
 }
 
 // Add law
@@ -91,11 +119,11 @@ function lawGetData($conn)
     mysqli_stmt_close($stmt);
 }
 
-function lawUpdate($conn, $id, $act, $part_number, $chapter_number, $section_number, $title, $law_text, $fine_amount, $points_deducted, $user_id)
+function lawUpdate($conn, $id, $fine_amount, $points_deducted, $user_id)
 {
-    $sql = "UPDATE laws SET act=?, part_number=?, chapter_number=?, section_number=?, title=?, law_text=?, fine_amount=?, points_deducted=?, latest_update_by=?, latest_update_at=now() WHERE id=?";
+    $sql = "UPDATE laws SET fine_amount=?, points_deducted=?, latest_update_by=?, latest_update_at=now() WHERE id=?";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "siiissiiii", $act, $part_number, $chapter_number, $section_number, $title, $law_text, $fine_amount, $points_deducted, $user_id, $id);
+    mysqli_stmt_bind_param($stmt, "iiii", $fine_amount, $points_deducted, $user_id, $id);
     $update_query = mysqli_stmt_execute($stmt);
 
     if ($update_query) {
