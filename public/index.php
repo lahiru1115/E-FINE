@@ -21,8 +21,8 @@
 
     <div class="content content-login">
         <div class="container container-login">
-            <h1 class="heading">Admin Login</h1><br>
-            <form method="post" action="../includes/main/admin-login.inc.php">
+            <h1 class="heading">Login</h1><br>
+            <form method="post" action="../includes/main/user-login.inc.php">
                 <label>Email</label>
                 <input type="text" placeholder="Enter your email" name="email" id="email">
                 <label>Password</label>

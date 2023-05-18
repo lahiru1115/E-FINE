@@ -7,10 +7,10 @@ function saAddEmptyInput($name, $email, $password)
 }
 
 // Add system admin profile details
-function saAdd($conn, $name, $email)
+function saAdd($con, $name, $email)
 {
     $sql = "INSERT INTO system_admin (name, email, created_at) VALUES (?, ?, now());";
-    $stmt = mysqli_stmt_init($conn);
+    $stmt = mysqli_stmt_init($con);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: /E-FINE/view/system-admin/sa-register.php?error=stmtFailed");
         exit();
@@ -19,12 +19,6 @@ function saAdd($conn, $name, $email)
     mysqli_stmt_bind_param($stmt, "ss", $name, $email);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-}
-
-// Police officer add empty input check
-function searchEmptyInput($search_term)
-{
-    return empty($search_term);
 }
 
 function viewAll($conn, $table, $page, $limit, $search_column = "", $search_term = "")
@@ -59,43 +53,43 @@ function viewAll($conn, $table, $page, $limit, $search_column = "", $search_term
 }
 
 // Get total number of records
-function getTotalRecords($conn, $table, $search_column = "", $search_term = "") {
+function getTotalRecords($con, $table, $search_column = "", $search_term = "")
+{
     if ($search_column && $search_term) {
         $sql = "SELECT COUNT(*) as count FROM $table WHERE $search_column LIKE '$search_term%'";
     } else {
         $sql = "SELECT COUNT(*) as count FROM $table";
     }
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($result);
     $count = $row['count'];
     return $count;
 }
 
-
 // Law add empty input check
-function lawEmptyInput($fine_amount, $points_deducted)
+function lawAddEmptyInput($part_number, $chapter_number, $section_number, $title, $law_text, $fine_amount, $points_deducted)
 {
-    return empty($fine_amount) || empty($points_deducted);
+    return empty($part_number) || empty($chapter_number) || empty($section_number) || empty($title) || empty($law_text) || empty($fine_amount) || empty($points_deducted);
 }
 
 // Add law
-function lawAdd($conn, $act, $part_number, $chapter_number, $section_number, $title, $law_text, $fine_amount, $points_deducted, $user_id)
+function lawAdd($con, $act, $part_number, $chapter_number, $section_number, $title, $law_text, $law_type, $fine_amount, $points_deducted, $user_id)
 {
-    $sql = "INSERT INTO laws (act, part_number, chapter_number, section_number, title, law_text, fine_amount, points_deducted, added_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
-    $stmt = mysqli_stmt_init($conn);
+    $sql = "INSERT INTO laws (act, part_number, chapter_number, section_number, title, law_text, law_type, fine_amount, points_deducted, added_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
+    $stmt = mysqli_stmt_init($con);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: /E-FINE/view/system-admin/law-add.php?error=stmtFailed");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "siiissiii", $act, $part_number, $chapter_number, $section_number, $title, $law_text, $fine_amount, $points_deducted, $user_id);
+    mysqli_stmt_bind_param($stmt, "siiisssiii", $act, $part_number, $chapter_number, $section_number, $title, $law_text, $law_type, $fine_amount, $points_deducted, $user_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: /E-FINE/view/system-admin/law-view.php?error=none");
     exit();
 }
 
-function lawGetData($conn)
+function lawGetData($con)
 {
     if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {
         header("location: /E-FINE/view/system-admin/law-view.php?error=stmtFailed");
@@ -104,7 +98,7 @@ function lawGetData($conn)
 
     $id = $_GET['id'];
     $sql = "SELECT * FROM laws WHERE id = ?";
-    $stmt = mysqli_prepare($conn, $sql);
+    $stmt = mysqli_prepare($con, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
@@ -119,10 +113,16 @@ function lawGetData($conn)
     mysqli_stmt_close($stmt);
 }
 
-function lawUpdate($conn, $id, $fine_amount, $points_deducted, $user_id)
+// Law update empty input check
+function lawUpdateEmptyInput($fine_amount, $points_deducted)
+{
+    return empty($fine_amount) || empty($points_deducted);
+}
+
+function lawUpdate($con, $id, $fine_amount, $points_deducted, $user_id)
 {
     $sql = "UPDATE laws SET fine_amount=?, points_deducted=?, latest_update_by=?, latest_update_at=now() WHERE id=?";
-    $stmt = mysqli_prepare($conn, $sql);
+    $stmt = mysqli_prepare($con, $sql);
     mysqli_stmt_bind_param($stmt, "iiii", $fine_amount, $points_deducted, $user_id, $id);
     $update_query = mysqli_stmt_execute($stmt);
 
@@ -136,7 +136,7 @@ function lawUpdate($conn, $id, $fine_amount, $points_deducted, $user_id)
 }
 
 // Delete law
-function lawDelete($conn)
+function lawDelete($con)
 {
     if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {
         header("location: /E-FINE/view/system-admin/law-view.php?error=cantDelete");
@@ -145,7 +145,7 @@ function lawDelete($conn)
 
     $id = $_GET['id'];
     $sql = "DELETE FROM laws WHERE id = ?;";
-    $stmt = mysqli_stmt_init($conn);
+    $stmt = mysqli_stmt_init($con);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: /E-FINE/view/system-admin/law-view.php?error=cantDelete");
@@ -166,78 +166,141 @@ function lawDelete($conn)
     mysqli_stmt_close($stmt);
 }
 
-// Police officer add empty input check
-function poAddEmptyInput($name, $service_number, $email)
+// // Police officer add empty input check
+// function poAddEmptyInput($name, $service_number, $email)
+// {
+//     return empty($name) || empty($service_number) || empty($email);
+// }
+
+// // Add police officer profile details
+// function poAdd($con, $name, $service_number, $rank, $police_station, $email, $user_id)
+// {
+//     $sql = "INSERT INTO police_officer (name, service_number, rank, police_station, email, added_by, created_at) VALUES (?, ?, ?, ?, ?, ?, now());";
+//     $stmt = mysqli_stmt_init($con);
+//     if (!mysqli_stmt_prepare($stmt, $sql)) {
+//         header("location: /E-FINE/view/system-admin/po-add.php?error=stmtFailed");
+//         exit();
+//     }
+
+//     mysqli_stmt_bind_param($stmt, "sisssi", $name, $service_number, $rank, $police_station, $email, $user_id);
+//     mysqli_stmt_execute($stmt);
+//     mysqli_stmt_close($stmt);
+// }
+
+// function poGetData()
+// {
+// }
+
+// function poUpdate()
+// {
+// }
+
+// function poDelete()
+// {
+// }
+
+// Police station admin add empty input check
+function psaAddEmptyInput($police_station, $email)
 {
-    return empty($name) || empty($service_number) || empty($email);
+    return empty($police_station) || empty($email);
 }
-
-// Add police officer profile details
-function poAdd($conn, $name, $service_number, $rank, $police_station, $email, $user_id)
-{
-    $sql = "INSERT INTO police_officer (name, service_number, rank, police_station, email, added_by, created_at) VALUES (?, ?, ?, ?, ?, ?, now());";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: /E-FINE/view/system-admin/po-add.php?error=stmtFailed");
-        exit();
-    }
-
-    mysqli_stmt_bind_param($stmt, "sisssi", $name, $service_number, $rank, $police_station, $email, $user_id);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-}
-
-function poGetData()
-{
-}
-
-function poUpdate()
-{
-}
-
-function poDelete()
-{
-}
-
-// Police station admin and RMV admin add empty input check
-function psarmvAddEmptyInput($name, $email)
-{
-    return empty($name) || empty($email);
-}
-
 
 // Add police station admin profile details
-function psaAdd($conn, $province, $district, $name, $email, $user_id)
+function psaAdd($con, $province, $district, $police_station, $email, $court_name, $user_id)
 {
-    $sql = "INSERT INTO police_station_admin (province, district, name, email, added_by, created_at) VALUES (?, ?, ?, ?, ?, now());";
-    $stmt = mysqli_stmt_init($conn);
+    $sql = "INSERT INTO police_station_admin (province, district, name, email, court_name, added_by, created_at) VALUES (?, ?, ?, ?, ?, ?, now());";
+    $stmt = mysqli_stmt_init($con);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: /E-FINE/view/system-admin/psa-add.php?error=stmtFailed");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "ssssi", $province, $district, $name, $email, $user_id);
+    mysqli_stmt_bind_param($stmt, "sssssi", $province, $district, $police_station, $email, $court_name, $user_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }
 
-function psaGetData()
+function psaGetData($con)
 {
+    if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {
+        header("location: /E-FINE/view/system-admin/psa-view.php?error=stmtFailed");
+        exit();
+    }
+
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM police_station_admin WHERE id = ?";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        return $row;
+    } else {
+        header("location: /E-FINE/view/system-admin/psa-view.php?error=stmtFailed");
+        exit();
+    }
+
+    mysqli_stmt_close($stmt);
 }
 
-function psaUpdate()
+function psaUpdateEmptyInput($email)
 {
+    return empty($email);
 }
 
-function psaDelete()
+function psaUpdate($con, $email)
 {
+    $sql = "UPDATE police_station_admin SET email=?, latest_update_by=?, latest_update_at=now() WHERE id=?";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "iii", $email, $user_id, $id);
+    $update_query = mysqli_stmt_execute($stmt);
+
+    if ($update_query) {
+        header("location: /E-FINE/view/system-admin/psa-view.php?error=updated");
+        exit();
+    } else {
+        header("location: /E-FINE/view/system-admin/psa-view.php?error=cantUpdate");
+        exit();
+    }
+}
+
+// Delete police station admin
+function psaDelete($con)
+{
+    if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {
+        header("location: /E-FINE/view/system-admin/psa-view.php?error=cantDelete");
+        exit();
+    }
+
+    $id = $_GET['id'];
+    $sql = "DELETE FROM police_station_admin WHERE id = ?;";
+    $stmt = mysqli_stmt_init($con);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: /E-FINE/view/system-admin/psa-view.php?error=cantDelete");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        header("location: /E-FINE/view/system-admin/psa-view.php?error=deleted");
+        exit();
+    } else {
+        header("location: /E-FINE/view/system-admin/psa-view.php?error=cantDelete");
+        exit();
+    }
+
+    mysqli_stmt_close($stmt);
 }
 
 // Add RMV admin profile details
-function rmvAdd($conn, $name, $email, $user_id)
+function rmvAdd($con, $name, $email, $user_id)
 {
     $sql = "INSERT INTO rmv_admin (name, email, added_by, created_at) VALUES (?, ?, ?, now());";
-    $stmt = mysqli_stmt_init($conn);
+    $stmt = mysqli_stmt_init($con);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: /E-FINE/view/system-admin/rmv-add.php?error=stmtFailed");
         exit();

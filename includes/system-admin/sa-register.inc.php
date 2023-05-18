@@ -33,12 +33,12 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    if (emailExists($conn, $email) !== false) {
+    if (emailExists($con, $email) !== false) {
         header("location: " . SA_REG_URL . "?error=emailTaken");
         exit();
     } else {
-        saAdd($conn, $name, $email);
-        adminRegister($conn, $email, $password, $user_role, $table);
+        saAdd($con, $name, $email);
+        userRegister($con, $email, $password, $user_role, $table);
         header("location: " . SA_REG_URL . "?error=none");
         exit();
     }

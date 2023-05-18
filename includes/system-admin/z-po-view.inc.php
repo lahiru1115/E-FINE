@@ -1,7 +1,7 @@
 <?php
 
 $limit = 10;
-$table = "laws";
+$table = "police_officer";
 
 // Set page parameters
 $page = $_GET['page'] ?? 1;

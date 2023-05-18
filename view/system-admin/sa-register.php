@@ -3,7 +3,7 @@ include_once("sa-dbh.inc.php");
 include_once("sa-head.php");
 
 $table = "system_admin";
-$result = nextId($conn, $table);
+$result = nextId($con, $table);
 $nextId = $result;
 
 ob_start();

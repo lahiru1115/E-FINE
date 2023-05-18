@@ -9,21 +9,23 @@ define('PSA_VIEW_URL', '/E-FINE/view/system-admin/psa-view.php');
 
 $province = $_POST["province"];
 $district = $_POST["district"];
-$name = $_POST["name"];
+$police_station = $_POST["police_station"]; 
 $email = $_POST["email"];
+$court_name = $_POST["court_name"];
 $password = "abc123";
 $table = "police_station_admin";
-$user_role = "Police Station Admin";
+$user_role = "police_station";
 $user_id = $_SESSION["user_id"];
+
 
 if (isset($_POST["submit"])) {
 
-    if (psarmvAddEmptyInput($name, $email) !== false) {
+    if (psaAddEmptyInput($police_station, $email) !== false) {
         header("location: " . PSA_ADD_URL . "?error=emptyInput");
         exit();
     }
 
-    if (invalidName($name) !== false) {
+    if (invalidName($police_station) !== false) {
         header("location: " . PSA_ADD_URL . "?error=invalidName");
         exit();
     }
@@ -33,12 +35,12 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    if (emailExists($conn, $email) !== false) {
+    if (emailExists($con, $email) !== false) {
         header("location: " . PSA_ADD_URL . "?error=emailTaken");
         exit();
     } else {
-        psaAdd($conn, $province, $district, $name, $email, $user_id);
-        adminRegister($conn, $email, $password, $user_role, $table);
+        psaAdd($con, $province, $district, $police_station, $email, $court_name, $user_id);
+        userRegister($con, $email, $password, $user_role, $table);
         header("location: " . PSA_VIEW_URL . "?error=none");
         exit();
     }

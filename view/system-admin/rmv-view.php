@@ -35,7 +35,7 @@ include_once("sa-navbar.php"); ?>
                     <tbody>
                         <?php
                         $table = "rmv_admin";
-                        $result = viewAll($conn, $table);
+                        $result = viewAll($con, $table);
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) { ?>
                                 <tr>

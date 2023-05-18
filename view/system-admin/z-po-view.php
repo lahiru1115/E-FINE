@@ -10,30 +10,16 @@ include "../../includes/main/alerts.inc.php";
 $alert = ob_get_clean(); // Retrieves the contents of the output buffer, clears the buffer, and returns the contents as a string.
 
 $options_column = array(
-    "id" => "Id",
-    "act" => "Act",
-    "_item" => "Part",
-    "chapter_number" => "Chapter",
-    "section_number" => "Section",
-    "title" => "Title",
-    "law_text" => "Law",
-    "law_type" => "Law type",
-    "fine_amount" => "Fine",
-    "points_deducted" => "Points",
-    "added_by" => "Added by",
-    "created_at" => "Created at",
-    "latest_update_by" => "Latest update by",
-    "latest_update_at" => "Latest update at"
+    "officer_id" => "Officer Id",
+    "name" => "Name",
+    "email" => "Email",
+    "police_station" => "Police Station",
+    "address" => "Address",
+    "phone_no" => "Phone No"
 );
 
-$options_act = array(
-    "Motor Traffic (AMENDMENT) Act, No. 8 of 2009" => "Motor Traffic (AMENDMENT) Act, No. 8 of 2009"
-);
-
-$options_type = array(
-    "Fine" => "Fine",
-    "Court" => "Court",
-    "Other" => "Other"
+$options_police = array(
+    "Fine" => "Fine"
 );
 
 ?>
@@ -44,13 +30,10 @@ $options_type = array(
 
         <div class="title-bar">
             <div class="heading">
-                <h1>Traffic Violation Laws</h1>
+                <h1>Police Officers</h1>
             </div>
             <div class="btn-group">
-                <!-- <div class="quick-search">
-                    <input type="text" name="quick-search" id="quick-search" placeholder="Quick Search...">
-                </div> -->
-                <a href="law-add.php"><button class="btn btn-primary">Add New</button></a>
+                <!-- <a href="po-add.php"><button class="btn btn-primary">Add New</button></a> -->
             </div>
         </div>
 
@@ -73,26 +56,14 @@ $options_type = array(
                             $search_term = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
                             $search_column = isset($_GET['column']) ? $_GET['column'] : '';
 
-                            if ($search_column === "act") {
+                            if ($search_column === "police_station") {
                                 echo "<select name='search' id='search'>";
-                                foreach ($options_act as $option) {
+                                foreach ($options_police as $option) {
                                     echo "<option value='" . $option . "' " . (($search_term ===  $option) ? "selected" : "") . ">" . $option . "</option>";
                                 }
                                 echo "</select>";
-                            } else if ($search_column === "law_type") {
-                                echo "<select name='search' id='search'>";
-                                foreach ($options_type as $option) {
-                                    echo "<option value='" . $option . "' " . (($search_term ===  $option) ? "selected" : "") . ">" . $option . "</option>";
-                                }
-                                echo "</select>";
-                            } else if ($search_column === "title" || $search_column === "law_text") {
-                                echo "<input type='text' name='search' id='search' value='$search_term'>";
-                            } else if ($search_column === "created_at" || $search_column === "latest_update_at") {
-                                echo "<input type='date' name='search' id='search' value='$search_term'>";
-                            } else if ($search_column === "id" || $search_column === "part_number" || $search_column === "chapter_number" || $search_column === "section_number" || $search_column === "fine_amount" || $search_column === "points_deducted" || $search_column === "added_by" || $search_column === "latest_update_by") {
-                                echo "<input type='number' name='search' id='search' value='$search_term'>";
                             } else {
-                                echo "<input type='number' name='search' id='search' value='$search_term'>";
+                                echo "<input type='text' name='search' id='search' value='$search_term'>";
                             }
                             ?>
                         </span>
@@ -111,7 +82,7 @@ $options_type = array(
 
         <div class="container">
             <?php
-            include("../../includes/system-admin/law-view.inc.php");
+            include("../../includes/system-admin/po-view.inc.php");
 
             // Display records
             if ($result->num_rows > 0) {
@@ -120,12 +91,12 @@ $options_type = array(
                     <table>
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Title</th>
-                                <th>Law type</th>
-                                <th>Fine (Rs.)</th>
-                                <th>Points</th>
-                                <th>Created at</th>
+                                <th>Officer Id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Police Station</th>
+                                <th>Address</th>
+                                <th>Phone No</th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -134,13 +105,13 @@ $options_type = array(
                         <tbody>
                             <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                                 <tr>
-                                    <td><?php echo $row['id']; ?></td>
+                                    <td><?php echo $row['officer_id']; ?></td>
+                                    <td><?php echo $row['name']; ?></td>
+                                    <td><?php echo $row['email']; ?></td>
+                                    <td><?php echo $row['police_station']; ?></td>
                                     <!-- Use ternary operators to simplify the if-else statements -->
-                                    <td><?php echo (strlen($row['title']) > 100) ? substr($row['title'], 0, 100) . "..." : $row['title']; ?></td>
-                                    <td><?php echo $row['law_type']; ?></td>
-                                    <td><?php echo $row['fine_amount']; ?></td>
-                                    <td><?php echo $row['points_deducted']; ?></td>
-                                    <td><?php echo $row['created_at']; ?></td>
+                                    <td><?php echo (strlen($row['address']) > 100) ? substr($row['address'], 0, 100) . "..." : $row['address']; ?></td>
+                                    <td><?php echo $row['phone_no']; ?></td>
                                     <td><a href="law-details.php?id=<?php echo $row['id']; ?>"><i class='bx bx-detail'></i></a></td>
                                     <td><a href="law-edit.php?id=<?php echo $row['id']; ?>"><i class='bx bxs-edit'></i></a></td>
                                     <td>
@@ -166,6 +137,5 @@ $options_type = array(
 
 </section>
 
-<script src="../../public/js/search-by-law.js"></script>
+<script src="../../public/js/search-by-po.js"></script>
 <script src="../../public/js/delete-dialog.js"></script>
-<!-- <script src="../../public/js/quick-search-law.js"></script> -->

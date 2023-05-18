@@ -14,12 +14,12 @@ $user_id = $_SESSION["user_id"];
 
 if (isset($_POST["submit"])) {
 
-    if (lawEmptyInput($fine_amount, $points_deducted) !== false) {
+    if (lawUpdateEmptyInput($fine_amount, $points_deducted) !== false) {
         header("location: " . LAW_EDIT_URL . "?error=emptyInput");
         exit();
     }
 
-    lawUpdate($conn, $id, $fine_amount, $points_deducted, $user_id);
+    lawUpdate($con, $id, $fine_amount, $points_deducted, $user_id);
 } else {
     header("location: " . LAW_VIEW_URL . "?error=stmtFailed");
     exit();

@@ -5,8 +5,8 @@ $dBUsername = "root";
 $dBPassword = "";
 $dBName = "efine";
 
-$conn = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName);
+$con = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName);
 
-if (!$conn) {
+if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
 }

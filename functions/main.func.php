@@ -1,10 +1,10 @@
 <?php
 
 // Increment next id
-function nextId($conn, $table)
+function nextId($con, $table)
 {
     $sql = "SELECT MAX(id) AS id FROM $table;";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($con, $sql);
 
     if (!$result) {
         return "Unavailable!";
@@ -22,9 +22,9 @@ function loginEmptyInput($email, $password)
 }
 
 // Login validation
-function adminLogin($conn, $email, $password, $table)
+function userLogin($con, $email, $password)
 {
-    $emailExists = emailExists($conn, $email);
+    $emailExists = emailExists($con, $email);
 
     if (!$emailExists) {
         header("location: /E-FINE/public/index.php?error=invalidLogin");
@@ -51,7 +51,7 @@ function adminLogin($conn, $email, $password, $table)
         case "Police Officer":
             redirect("/E-FINE/view/police-officer/po-home.php");
             break;
-        case "Police Station Admin":
+        case "police_station":
             redirect("/E-FINE/view/police-station-admin/psa-home.php");
             break;
         case "RMV Admin":
@@ -70,10 +70,10 @@ function redirect($url)
 }
 
 // Existing email check
-function emailExists($conn, $email)
+function emailExists($con, $email)
 {
     $sql = "SELECT * FROM user_login WHERE email = ?";
-    $stmt = mysqli_stmt_init($conn);
+    $stmt = mysqli_stmt_init($con);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: /E-FINE/view/system-admin/sa-register.php?error=stmtFailed");
         exit();
@@ -113,10 +113,10 @@ function invalidPassword($password)
 }
 
 // Add login credentials for SA, PO, PSA and RMV
-function adminRegister($conn, $email, $password, $user_role, $table)
+function userRegister($con, $email, $password, $user_role, $table)
 {
     $sql = "INSERT INTO user_login (user_id, email, password, user_role, created_at) VALUES ((SELECT MAX(id) FROM $table), ?, ?, ?, now());";
-    $stmt = mysqli_stmt_init($conn);
+    $stmt = mysqli_stmt_init($con);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: /E-FINE/view/system-admin/sa-register.php?error=stmtFailed");
         exit();

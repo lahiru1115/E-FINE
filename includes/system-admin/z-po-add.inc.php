@@ -34,12 +34,12 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    if (emailExists($conn, $email) !== false) {
+    if (emailExists($con, $email) !== false) {
         header("location: " . PO_ADD_URL . "?error=emailTaken");
         exit();
     } else {
-        poAdd($conn, $name, $service_number, $rank, $police_station, $email, $user_id);
-        adminRegister($conn, $email, $password, $user_role, $table);
+        poAdd($con, $name, $service_number, $rank, $police_station, $email, $user_id);
+        adminRegister($con, $email, $password, $user_role, $table);
         header("location: " . PO_VIEW_URL . "?error=none");
         exit();
     }

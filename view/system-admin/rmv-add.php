@@ -5,7 +5,7 @@ include_once("sa-sidebar.php");
 include_once("sa-navbar.php");
 
 $table = "rmv_admin";
-$result = nextId($conn, $table);
+$result = nextId($con, $table);
 $nextId = $result;
 
 ob_start();

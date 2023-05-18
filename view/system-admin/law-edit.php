@@ -4,7 +4,7 @@ include_once("sa-head.php");
 include_once("sa-sidebar.php");
 include_once("sa-navbar.php");
 
-$row = lawGetData($conn);
+$row = lawGetData($con);
 
 ob_start();
 include "../../includes/main/alerts.inc.php";
@@ -48,7 +48,11 @@ $alert = ob_get_clean();
                     </tr>
                     <tr>
                         <td><label>Law</label></td>
-                        <td><textarea name="law_text" id="law_text" cols="50" rows="10" class="disabled" readonly><?php echo $row['law_text']; ?></textarea></td>
+                        <td><textarea name="law_text" id="law_text" cols="50" rows="7" class="disabled" readonly><?php echo $row['law_text']; ?></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label>Law type</label></td>
+                        <td><input type="text" name="law_type" id="law_type" class="disabled" value="<?php echo $row['law_type']; ?>" readonly></td>
                     </tr>
                     <tr>
                         <td><label>Fine</label></td>

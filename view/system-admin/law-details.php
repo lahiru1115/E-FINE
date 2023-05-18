@@ -4,7 +4,7 @@ include_once("sa-head.php");
 include_once("sa-sidebar.php");
 include_once("sa-navbar.php");
 
-$row = lawGetData($conn);
+$row = lawGetData($con);
 
 ob_start();
 include "../../includes/main/alerts.inc.php";
@@ -55,15 +55,15 @@ $alert = ob_get_clean();
                         <td>
                             <div class="currency">
                                 <input class="currency-symbol disabled" disabled value="Rs"></input>
-                                <input type="number" name="fine_amount" id="fine_amount" class="currency-input" min="0" value="<?php echo $row['fine_amount']; ?>">
+                                <input type="number" name="fine_amount" id="fine_amount" class="currency-input disabled" min="0" value="<?php echo $row['fine_amount']; ?>">
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td><label>Points</label></td>
-                        <td><input type="number" name="points_deducted" id="points_deducted" min="0" max="24" value="<?php echo $row['points_deducted']; ?>"></td>
+                        <td><input type="number" name="points_deducted" id="points_deducted" min="0" max="24" class="disabled" value="<?php echo $row['points_deducted']; ?>"></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td colspan="2">
                             <div class="btn-group">
                                 <a href="law-view.php">
@@ -73,7 +73,7 @@ $alert = ob_get_clean();
                                 <?php echo $alert; ?>
                             </div>
                         </td>
-                    </tr>
+                    </tr> -->
                 </table>
             </form>
         </div>

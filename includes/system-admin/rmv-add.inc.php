@@ -31,12 +31,12 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    if (emailExists($conn, $email) !== false) {
+    if (emailExists($con, $email) !== false) {
         header("location: " . RMV_ADD_URL . "?error=emailTaken");
         exit();
     } else {
-        rmvAdd($conn, $name, $email, $user_id);
-        adminRegister($conn, $email, $password, $user_role, $table);
+        rmvAdd($con, $name, $email, $user_id);
+        adminRegister($con, $email, $password, $user_role, $table);
         header("location: " . RMV_VIEW_URL . "?error=none");
         exit();
     }
