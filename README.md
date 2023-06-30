@@ -28,11 +28,11 @@ To get a local copy of the E-FINE application up and running, follow these steps
    git clone https://github.com/lahiru1115/E-FINE.git
    ```
 
-2. Configure the web server environment (e.g., Apache) to point to the cloned project directory.
+2. Configure the web server environment (e.g., WampServer, XAMPP) to point to the cloned project directory.
 
-3. Import the provided SQL dump file (`e_fine.sql`) into your MySQL database.
+3. Import the provided SQL dump file (`efine.sql`) into your MySQL database.
 
-4. Configure the database connection parameters in the `config.php` file, located in the project's root directory.
+4. Configure the database connection parameters in the `db_conn.php` file, located in the config directory.
 
 5. Access the application through your web browser using the configured server URL.
 
@@ -50,25 +50,15 @@ Contributions are welcome! If you'd like to contribute to E-FINE, please follow 
 
 5. Submit a pull request to the main repository, explaining the changes you've made.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## Contact
 
 For any inquiries or support regarding E-FINE, please reach out to the project maintainer:
 
-- Name: [Lahiru Perera](https://github.com/lahiru1115)
-- Email: [lahiruperera@example.com](mailto:lahiruperera@example.com)
+- Name: [Lahiru Dissanayake](https://github.com/lahiru1115)
+- Email: [lahirudissanayake15@gmail.com](mailto:lahirudissanayake15@gmail.com)
 
 Feel free to report any issues or suggest enhancements via the [issue tracker](https://github.com/lahiru1115/E-FINE/issues).
 
 ## Acknowledgements
-
-E-FINE extends its gratitude to the following open-source projects that were utilized in its development:
-
-- [Bootstrap](https://getbootstrap.com)
-- [jQuery](https://jquery.com)
-- [Font Awesome](https://fontawesome.com)
 
 Special thanks to the developers and contributors of these projects for their remarkable work.
