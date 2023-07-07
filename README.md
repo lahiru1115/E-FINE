@@ -58,7 +58,3 @@ For any inquiries or support regarding E-FINE, please reach out to the project m
 - Email: [lahirudissanayake15@gmail.com](mailto:lahirudissanayake15@gmail.com)
 
 Feel free to report any issues or suggest enhancements via the [issue tracker](https://github.com/lahiru1115/E-FINE/issues).
-
-## Acknowledgements
-
-Special thanks to the developers and contributors of these projects for their remarkable work.
