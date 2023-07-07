@@ -32,7 +32,7 @@ To get a local copy of the E-FINE application up and running, follow these steps
 
 3. Import the provided SQL dump file (`efine.sql`) into your MySQL database.
 
-4. Configure the database connection parameters in the `db_conn.php` file, located in the config directory.
+4. Configure the database connection parameters in the `db_conn.php` file, located in the [config](config) directory.
 
 5. Access the application through your web browser using the configured server URL.
 
