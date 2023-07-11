@@ -1,5 +1,7 @@
 # E-FINE: Online Traffic Fine Payment System
 
+![Cover Photo](public/img/screenshots/Header.png)
+
 E-FINE is a web-based application that aims to simplify the process of paying traffic fines online. With E-FINE, users can conveniently pay their traffic fines from the comfort of their homes, reducing the need for physical visits to traffic police stations.
 
 ## Features
@@ -35,6 +37,59 @@ To get a local copy of the E-FINE application up and running, follow these steps
 4. Configure the database connection parameters in the `db_conn.php` file, located in the [config](config) directory.
 
 5. Access the application through your web browser using the configured server URL.
+
+## Screenshots
+
+<table>
+  <tr>
+    <td>
+      <img src="public/img/screenshots/Screenshot-1.png" alt="Screenshot 1">
+    </td>
+    <td>
+      <img src="public/img/screenshots/Screenshot-2.png" alt="Screenshot 2">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="public/img/screenshots/Screenshot-3.png" alt="Screenshot 3">
+    </td>
+    <td>
+      <img src="public/img/screenshots/Screenshot-4.png" alt="Screenshot 4">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="public/img/screenshots/Screenshot-5.png" alt="Screenshot 5">
+    </td>
+    <td>
+      <img src="public/img/screenshots/Screenshot-6.png" alt="Screenshot 6">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="public/img/screenshots/Screenshot-7.png" alt="Screenshot 7">
+    </td>
+    <td>
+      <img src="public/img/screenshots/Screenshot-8.png" alt="Screenshot 8">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="public/img/screenshots/Screenshot-9.png" alt="Screenshot 9">
+    </td>
+    <td>
+      <img src="public/img/screenshots/Screenshot-10.png" alt="Screenshot 10">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="public/img/screenshots/Screenshot-11.png" alt="Screenshot 11">
+    </td>
+    <td>
+      <img src="public/img/screenshots/Screenshot-12.png" alt="Screenshot 12">
+    </td>
+  </tr>
+</table>
 
 ## Contributing
 
