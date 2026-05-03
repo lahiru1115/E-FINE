@@ -1,8 +1,0 @@
-ravindupbalasooriya@gmail.com
-
-$result = die($name);
-print_r($result);
-
-<?php
-    echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-?>
