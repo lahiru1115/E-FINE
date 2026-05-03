@@ -1,10 +1,10 @@
-# E-FINE: Online Traffic Fine Payment System
+# E-FINE: Online Traffic Fine Payment System (Admin Panel)
 
 ![Cover Photo](public/img/screenshots/Header.png)
 
 E-FINE is a web-based application that aims to simplify the process of paying traffic fines online. With E-FINE, users can conveniently pay their traffic fines from the comfort of their homes, reducing the need for physical visits to traffic police stations.
 
-## Features
+## Features of the Admin Panel
 
 - **Dashboard**: The system admin is provided with a comprehensive dashboard that offers an overview of the system's performance, traffic violation statistics, and pending payments.
 - **Manage Traffic Violation Laws**: The system admin can easily manage the traffic violation laws by adding, updating, or deleting them. This feature ensures that the system stays up-to-date with the latest regulations.
@@ -32,11 +32,15 @@ To get a local copy of the E-FINE application up and running, follow these steps
 
 2. Configure the web server environment (e.g., WampServer, XAMPP) to point to the cloned project directory.
 
-3. Import the provided SQL dump file (`efine.sql`) into your MySQL database.
+3. Import the provided SQL dump file (`e-fine.sql`) into your MySQL database.
 
 4. Configure the database connection parameters in the `db_conn.php` file, located in the [config](config) directory.
 
 5. Access the application through your web browser using the configured server URL.
+
+6. Log in to the admin panel using the following credentials:
+   - Email: `system_admin@example.com`
+   - Password: `1234`
 
 ## Screenshots
 
